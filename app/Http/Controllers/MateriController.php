@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Materi;
+use App\Models\Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -55,7 +56,7 @@ class MateriController extends Controller
             Session::forget('danger');
             session()->flash('success', 'Data materi berhasil ditemukan.');
             //cari data dari database
-            $materi = materi::where('nama_materi', 'like', "%".$keyword."%")->get();
+            $materi = materi::where('title', 'like', "%".$keyword."%")->get();
 
             return view('materi', ['materi' => $materi,'hitung_materi' => $hitung_materi]);
     
@@ -73,12 +74,11 @@ class MateriController extends Controller
             return redirect('/');
         }elseif(auth()->user()->rolename === 'admin'){
             
-            //Validasi Masukan
+             //Validasi Masukan
             $validator = Validator::make($request->all(), [
                 'title' => ['required', 'min:1'],
                 'content' => ['required', 'min:1'],
                 'id_mapel' => ['required', 'min:1'],
-                'id_guru' => ['required', 'min:1'],
                 'tgl' => ['required', 'min:1']
             ]);
             
@@ -88,7 +88,7 @@ class MateriController extends Controller
                 return redirect('materi')->withErrors($validator)->withInput();
             }
             
-            $hitung_materi = materi::count();
+            $hitung_materi = Materi::count();
             //nilai untuk id
             $idnext = $hitung_materi + 1;
             Materi::insert([
@@ -127,7 +127,6 @@ class MateriController extends Controller
                 'title' => ['required', 'min:1'],
                 'content' => ['required', 'min:1'],
                 'id_mapel' => ['required', 'min:1'],
-                'id_guru' => ['required', 'min:1'],
                 'tgl' => ['required', 'min:1']
             ]);
     
@@ -151,6 +150,7 @@ class MateriController extends Controller
             $materi = Materi::orderBy('id_materi', 'asc')->get();
             Session::forget('danger');
             session()->flash('success', 'Data materi berhasil diubah.');
+            
             return view('materi', ['materi' => $materi,'hitung_materi' => $hitung_materi]);
       
         }elseif(auth()->user()->rolename === 'pengguna'){
@@ -170,11 +170,13 @@ class MateriController extends Controller
             
             session()->start();
             //hapus data
+            $hapus_materi = Materi::where('id_materi', $id_materi)->delete();
+            $hitung_materi = Materi::count();
             //menampilkan data
             $materi = Materi::orderBy('id_materi', 'asc')->get();
             Session::forget('success');
             session()->flash('danger', 'Data materi berhasil dihapus.');
-            return view('materi', ['materi' => $materi,'hitung_materi' => $hitung_materi]);
+            return view('materi', ['materi' => $materi,'hitung_materi' => $hitung_materi,'hapus_materi' => $hapus_materi]);
         
         }elseif(auth()->user()->rolename === 'pengguna'){
             return redirect('/info');
@@ -192,10 +194,46 @@ class MateriController extends Controller
             
             session()->start();
 
+            $mapel = Mapel::with('kelas')->get();
+            return view('tambah-materi',['mapel' => $mapel]);
+        
+        }elseif(auth()->user()->rolename === 'pengguna'){
+            return redirect('/info');
+        }else{
+            return redirect('/');
+        }
 
+    }
 
+    public function ubah_materi(Request $request, $id_materi)
+    {
+        if(auth()->user() === null ){
+            return redirect('/');
+        }elseif(auth()->user()->rolename === 'admin'){
+            
+            session()->start();
+            $materi = Materi::where('id_materi', $id_materi)->first();
+            $mapel = Mapel::with('kelas')->get();
+            return view('ubah-materi',['mapel' => $mapel, 'materi' => $materi]);
+        
+        }elseif(auth()->user()->rolename === 'pengguna'){
+            return redirect('/info');
+        }else{
+            return redirect('/');
+        }
 
-            return view('tambah-materi');
+    }
+
+        public function tampil_materi(Request $request, $id_materi)
+    {
+        if(auth()->user() === null ){
+            return redirect('/');
+        }elseif(auth()->user()->rolename === 'admin'){
+            
+            session()->start();
+            $materi = Materi::where('id_materi', $id_materi)->first();
+            $mapel = Mapel::with('kelas')->get();
+            return view('tampil-materi',['mapel' => $mapel, 'materi' => $materi]);
         
         }elseif(auth()->user()->rolename === 'pengguna'){
             return redirect('/info');

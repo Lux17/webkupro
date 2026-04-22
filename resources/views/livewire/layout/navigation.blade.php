@@ -110,13 +110,23 @@ new class extends Component
         </li>
 
         <li class="nav-item has-treeview my-0">
-            <a class="nav-link ">
+            <a class="nav-link {{ (Route::currentRouteName() == 'materi' || Request::is('materi/*'))  ? 'active' : 'collapsed'}}" href="{{ route('materi') }}">
                 <i class="nav-icon fa-solid fa-virus text-white"></i>
                 <p  class="text-white">
                     Materi
                 </p>
             </a>
         </li>
+
+        <li class="nav-item has-treeview my-0">
+            <a class="nav-link ">
+                <i class="nav-icon fa-solid fa-virus text-white"></i>
+                <p  class="text-white">
+                    Data/Files
+                </p>
+            </a>
+        </li>
+
 
         
         <li class="nav-item has-treeview my-0">

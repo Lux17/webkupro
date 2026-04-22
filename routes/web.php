@@ -6,6 +6,7 @@ use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\GejalaController;
+use App\Http\Controllers\FilesController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\AturanController;
 use App\Http\Controllers\LaporanController;
@@ -37,9 +38,11 @@ Route::get('/hasil/{id}', [HasilController::class, 'index'])->name('hasil');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
 Route::get('/guru', [GuruController::class, 'index'])->name('guru');
+Route::get('/files', [FilesController::class, 'index'])->name('files');
 Route::get('/email-verif', [EmailController::class, 'index'])->name('email-verif');
 Route::get('/tambah-materi', [MateriController::class, 'tambah_materi'])->name('tambah-materi');
-
+Route::get('/ubah-materi/{id_materi}', [MateriController::class, 'ubah_materi'])->name('ubah-materi');
+Route::get('/tampil-materi/{id_materi}', [MateriController::class, 'tampil_materi'])->name('tampil-materi');
 
 //pengguna
 Route::get('/info', [InfoController::class, 'index'])->name('info');
@@ -75,6 +78,12 @@ Route::get('/materi/search_materi', 'App\Http\Controllers\materiController@searc
 Route::post('/materi/simpan', 'App\Http\Controllers\materiController@simpan')->name('simpan_materi');
 Route::put('/materi/update_materi/{id}', 'App\Http\Controllers\materiController@update_materi')->name('update_materi');
 Route::delete('/materi/hapus_materi/{id}', 'App\Http\Controllers\materiController@hapus_materi')->name('hapus_materi');
+
+
+Route::get('/files/search_files', 'App\Http\Controllers\FilesController@search_files')->name('search_files');
+Route::post('/files/simpan', 'App\Http\Controllers\FilesController@simpan')->name('simpan');
+Route::put('/files/update_files/{id}', 'App\Http\Controllers\FilesController@update_files')->name('update_files');
+Route::delete('/files/hapus_files/{id}', 'App\Http\Controllers\FilesController@hapus_files')->name('hapus_files');
 
 
 //Data Admin

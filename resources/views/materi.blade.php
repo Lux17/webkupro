@@ -30,9 +30,11 @@
               </div>
             </div>
 
-            <button type="button" class="btn btn-primary mx-2 mb-3" data-bs-toggle="modal" data-bs-target="#Tambahmateri">
+
+
+            <a type="submit" class="btn btn-primary mx-2 mb-3" href="{{ route('tambah-materi') }}">
               Tambah Data
-            </button>
+            </a>
 
             <!-- notif session -->
             @if(session('success'))
@@ -96,7 +98,14 @@
                             <td>{{ $g->id_mapel}}</td>
                             <td>{{ $g->id_guru}}</td>
                             <td>
-                              <a class="dropdown-item btn button-primary" style="width: 5px;" data-bs-toggle="modal" data-bs-target="#Ubahmateri{{ $g->id_materi }}" ><i class="fa-regular fa-pen-to-square" style="color: blue;"></i></a>
+                              <a class="dropdown-item btn button-white" style="width: 5px;" href="{{ route('tampil-materi', $g->id_materi) }}" "><i class="fa-solid fa-eye" style="color: black;"></i></a>
+                            </td>
+                            <td>
+                              <a href="{{ route('ubah-materi', $g->id_materi) }}" 
+                                class="dropdown-item btn button-primary" 
+                                style="width: 5px;">
+                                <i class="fa-regular fa-pen-to-square" style="color: blue;"></i>
+                              </a>
                             </td>
                             <td>
                               <a class="dropdown-item btn button-danger" style="width: 5px;" data-bs-toggle="modal" data-bs-target="#hapus{{ $g->id_materi }}"><i class="fa-solid fa-trash" style="color: red;"></i></a>
