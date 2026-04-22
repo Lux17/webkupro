@@ -189,20 +189,37 @@ class FilesController extends Controller
         }elseif(auth()->user()->rolename === 'admin'){
 
             session()->start();
-            //menghapus data files
-            $cari_namafiles = Files::where('id_files', $id_files)->pluck('nama_files');
-            $hapus_files = Files::where('id_files', $id_files)->delete();
-            $hitung_files = Files::all()->count();
-            //menampilkan
+
+            // cari data file
+            $file = Files::where('id_files', $id_files)->first();
+
+            if($file){
+                $path = public_path($file->nama_files);
+
+                // cek jika file ada lalu hapus
+                if(file_exists($path)){
+                    unlink($path);
+                }
+
+                // hapus dari database
+                $file->delete();
+            }
+
+            $hitung_files = Files::count();
             $files = Files::orderBy('id_files', 'asc')->get();
+
             Session::forget('success');
             session()->flash('danger', 'Data files berhasil dihapus.');
-            return view('files', ['files' => $files,'hitung_files' => $hitung_files]);
+
+            return view('files', [
+                'files' => $files,
+                'hitung_files' => $hitung_files
+            ]);
         
-        }elseif(auth()->user()->rolename === 'pengguna'){
-            return redirect('/info');
-        }else{
-            return redirect('/');
+            }elseif(auth()->user()->rolename === 'pengguna'){
+                return redirect('/info');
+            }else{
+                return redirect('/');
+            }
         }
-    }
 }
