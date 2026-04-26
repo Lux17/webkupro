@@ -19,5 +19,9 @@ class HasilController extends Controller
         return view('laporan_hasil', ['hasil_diagnosis' => $hasil_diagnosis]);
     }
 
+    
+
 
 }
+
+

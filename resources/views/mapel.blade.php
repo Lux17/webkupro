@@ -249,7 +249,7 @@
 
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Sistem Pakar Ginjal Anak. Created by Lucky Saputra</a>.</strong>
+    <strong>Copyright &copy; 2024 <a href="#">Created by </a>.</strong>
     All rights reserved.
   </footer>
 

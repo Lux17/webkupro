@@ -24,7 +24,8 @@
     </center>
     <div class="materi">
     <p>
-     {!! $materi->content !!}
+        
+     {!! $content !!}
     </p>
     </div>
     </div>

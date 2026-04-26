@@ -79,7 +79,7 @@ class FilesController extends Controller
             //Validasi Masukan
             $validator = Validator::make($request->all(), [
                 'nama_files' => ['required', 'unique:files'],
-                'file' => ['required', 'file', 'max:10240'],
+                'file' => ['required', 'file', 'max:102400000'],
                 'tgl' => ['required', 'min:1'],
             ]);
 

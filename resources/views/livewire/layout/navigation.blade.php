@@ -66,8 +66,7 @@ new class extends Component
   <div class="d-flex align-items-center justify-content-between mx-4 my-2">
   <div class="d-flex align-items-center justify-content-between ">
       <a href="#" class="logo d-flex align-items-center text-decoration-none">
-        <img src="{{ asset('assets/images/logo.png') }}" style="width: 40px; height: 40px;" alt="">
-        <span class="d-none d-lg-block mx-3"><b>SP KidneyKids</b></span>
+        <span class="d-none d-lg-block mx-3"><b></b></span>
       </a>
   </div> 
     <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -110,6 +109,15 @@ new class extends Component
         </li>
 
         <li class="nav-item has-treeview my-0">
+            <a class="nav-link {{ (Route::currentRouteName() == 'files' || Request::is('files/*'))  ? 'active' : 'collapsed'}}" href="{{ route('files') }}">
+                <i class="nav-icon fa-solid fa-virus text-white"></i>
+                <p  class="text-white">
+                    Data/Files
+                </p>
+            </a>
+        </li>
+
+        <li class="nav-item has-treeview my-0">
             <a class="nav-link {{ (Route::currentRouteName() == 'materi' || Request::is('materi/*'))  ? 'active' : 'collapsed'}}" href="{{ route('materi') }}">
                 <i class="nav-icon fa-solid fa-virus text-white"></i>
                 <p  class="text-white">
@@ -118,30 +126,17 @@ new class extends Component
             </a>
         </li>
 
-        <li class="nav-item has-treeview my-0">
-            <a class="nav-link ">
-                <i class="nav-icon fa-solid fa-virus text-white"></i>
-                <p  class="text-white">
-                    Data/Files
-                </p>
-            </a>
-        </li>
 
 
         
         <li class="nav-item has-treeview my-0">
-            <a class="nav-link ">
+            <a class="nav-link {{ (Route::currentRouteName() == 'kuis' || Request::is('kuis/*'))  ? 'active' : 'collapsed'}}" href="{{ route('kuis') }}">
                 <i class="nav-icon fa-solid fa-virus text-white"></i>
                 <p  class="text-white">
                     Kuis
                 </p>
             </a>
         </li>
-
-        <div class="mx-3">
-          <p class="text-secondary">Analisis</p>
-        </div>
-
 
         <div class="mx-3">
           <p class="text-secondary">Kelola Akun</p>

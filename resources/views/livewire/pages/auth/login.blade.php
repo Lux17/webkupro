@@ -34,10 +34,10 @@ new #[Layout('layouts.guest')] class extends Component
 
 
 <div class ="border pt-4 mt-5 rounded bg-white align-center masuk">
-<div class ="align-center text-center">
+<!-- <div class ="align-center text-center">
     <img src="{{ asset('assets/images/logo.png') ;}}" style="height: 60px;" alt="">
     <h5 style="color: #0a44c1;">SP KidneyKids</h5>
-</div>
+</div> -->
 <center>
     <h1 style="color: #0a44c1;  ">Masuk Akun</h1>
     <p class="card-text" style="color: #343fba;">Silahkan  masuk ke akunmu.</p>

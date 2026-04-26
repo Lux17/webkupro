@@ -232,8 +232,10 @@ class MateriController extends Controller
             
             session()->start();
             $materi = Materi::where('id_materi', $id_materi)->first();
+            $tampil = $materi->content;
+            $content = str_replace('src="upload/', 'src="'.asset('upload/').'/', $tampil); 
             $mapel = Mapel::with('kelas')->get();
-            return view('tampil-materi',['mapel' => $mapel, 'materi' => $materi]);
+            return view('tampil-materi',['mapel' => $mapel, 'materi' => $materi, 'content' => $content]);
         
         }elseif(auth()->user()->rolename === 'pengguna'){
             return redirect('/info');
