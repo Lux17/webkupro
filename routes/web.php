@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\KuisController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\MateriController;
@@ -49,7 +52,9 @@ Route::post('/tambah-soal', [KuisController::class, 'tambah_soal'])->name('tamba
 Route::post('/ubah-soal/{id_kuis}', [KuisController::class, 'ubah_soal'])->name('ubah-soal');
 Route::get('/soal/{kode_kuis}', [KuisController::class, 'soal'])->name('soal');
 Route::post('/hasil', [KuisController::class, 'hasil'])->name('hasil');
-
+Route::get('/class/{id_kelas}', [ClassController::class, 'index'])->name('class');
+Route::get('/lessons/{id_materi}', [LessonsController::class, 'index'])->name('lessons');
+Route::get('/quiz/{kode_kuis}', [QuizController::class, 'index'])->name('quiz');
 
 
 //pengguna

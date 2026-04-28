@@ -53,81 +53,23 @@
 
 <div class="container mt-5 " >
 
-@php
-  $colors = ['bg-blue', 'bg-green', 'bg-orange'];
-@endphp
-
-
-<div class="row g-4 mt-5">
-  @forelse ($mapel as $m)
-
-      @php
-      $color = $colors[array_rand($colors)];
-    @endphp
-
-    <div class="col-md-4">
-      <a href="{{ route('class', $m->id_mapel) }}" class="text-decoration-none text-dark">
-        <div class="card card-class h-100">
-
-          <div class="card-header-custom  {{ $color }} ">
-            <div>
-              <h5>{{ $m->nama_mapel }}</h5>
-              <small>{{ $m->kelas->nama_kelas ?? '-' }}</small>
-            </div>
-          </div>
-
-          <div class="card-body">
-            <p><strong>{{ $m->guru->name ?? '-' }}</strong></p>
-          </div>
-
-          <div class="card-footer"></div>
-
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid mt-3 mb-3 mx-5 px-5">
+            <a class="btn btn-danger" href="{{ route('info') }}">Kembali</a>
         </div>
-      </a>
+    </nav>
+    <div class="container mt-5 mx-5 p-4 border rounded">
+    <p>tanggal: {{ $materi->tgl }} </p>
+    <center> 
+        <h3>{{ $materi->title }}-{{ $materi->id_mapel}}</h3>
+    </center>
+    <div class="materi">
+    <p>
+        
+     {!! $content !!}
+    </p>
     </div>
-
-      @empty
-
-    <div class="col-12 text-center">
-      <div class="alert alert-info">
-        Tidak ada data mapel
-      </div>
     </div>
-  @endforelse
-</div>
-</div>
-
-<hr>
-<h5>Daftar Kuis</h5>
-
-   <div class="container mt-4">
-
-   @foreach ($mapel as $n)
-
-  @forelse ($n->kuis as $k)
-
-    <div class="card mb-3 shadow-sm border-start border-secondary border-4">
-      <div class="card-body d-flex justify-content-between align-items-center">
-
-        <div>
-          <h5>{{ $k->kode_kuis }}</h5>
-          <small class="text-muted">
-            {{ $n->kelas->nama_kelas ?? '-' }} - Durasi: {{ $k->durasi }} Menit
-          </small>
-        </div>
-
-        <div>
-          <a href="{{ route('quiz', $k->kode_kuis) }}" class="btn btn-primary">Mulai</a>
-        </div>
-
-      </div>
-    </div>
-
-  @empty
-    {{-- kosongin biar ga spam --}}
-  @endforelse
-
-@endforeach
 
 
 </div>
