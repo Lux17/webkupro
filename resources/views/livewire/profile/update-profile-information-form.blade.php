@@ -8,12 +8,14 @@ use Livewire\Volt\Component;
 
 new class extends Component
 {
-    public string $name = '';
-    public string $email = '';
-    public string $tgl_lahir = '';
-    public string $no_hp = '';
-    public string $alamat = '';
-    public string $riwayat_penyakit = '';
+    public ?string $name = '';
+    public ?string $email = '';
+    public ?string $tgl_lahir = '';
+    public ?string $no_hp = '';
+    public ?string $alamat = '';
+    public ?string $nisn = '';
+    public ?string $nip = '';
+
 
     /**
      * Mount the component.
@@ -25,7 +27,8 @@ new class extends Component
         $this->tgl_lahir = Auth::user()->tgl_lahir;
         $this->no_hp = Auth::user()->no_hp;
         $this->alamat = Auth::user()->alamat;
-        $this->riwayat_penyakit = Auth::user()->riwayat_penyakit;
+        $this->nisn = Auth::user()->nisn;
+        $this->nip = Auth::user()->nip;
     }
 
     /**
@@ -41,7 +44,6 @@ new class extends Component
             'tgl_lahir' => ['required'],
             'no_hp' => ['required'],
             'alamat' => ['required', 'string', 'max:255'],
-            'riwayat_penyakit' => ['required', 'string', 'max:255'],
         ]);
 
         $user->fill($validated);
@@ -133,8 +135,15 @@ new class extends Component
                 </div>
             @endif
         </div>
-        @if((Auth::user()->rolename === 'pengguna'))
+        @if((Auth::user()->rolename === 'guru'))
         <div class="mb-3">
+            <x-input-label for="nisn" :value="__('NIP')" />
+        </div>
+        <div class="mb-3">
+            <x-text-input wire:model="nip" id="nip" name="nisn" type="text" class="form-control" required autofocus autocomplete="nip" />
+            <x-input-error class="mt-2" :messages="$errors->get('nip')" />
+        </div>
+               <div class="mb-3">
             <x-input-label for="tgl_lahir" :value="__('Tanggal Lahir')" />
         </div>
         <div class="mb-3">
@@ -155,12 +164,35 @@ new class extends Component
             <x-text-input wire:model="alamat" id="alamat" name="alamat" type="text" class="form-control" required autofocus autocomplete="alamat" />
             <x-input-error class="mt-2" :messages="$errors->get('alamat')" />
         </div>
+
+        @elseif((Auth::user()->rolename === 'pengguna'))
         <div class="mb-3">
-            <x-input-label for="riwayat_penyakit" :value="__('Riwayat Penyakit')" />
+            <x-input-label for="nisn" :value="__('NISN/NIS')" />
         </div>
         <div class="mb-3">
-            <x-text-input wire:model="riwayat_penyakit" id="riwayat_penyakit" name="riwayat_penyakit" type="text" class="form-control" required autofocus autocomplete="riwayat_penyakit" />
-            <x-input-error class="mt-2" :messages="$errors->get('riwayat_penyakit')" />
+            <x-text-input wire:model="nisn" id="nisn" name="nisn" type="text" class="form-control" required autofocus autocomplete="nisn" />
+            <x-input-error class="mt-2" :messages="$errors->get('nisn')" />
+        </div>
+        <div class="mb-3">
+            <x-input-label for="tgl_lahir" :value="__('Tanggal Lahir')" />
+        </div>
+        <div class="mb-3">
+            <x-text-input wire:model="tgl_lahir" id="tgl_lahir" name="tgl_lahir" type="date" class="form-control" required autofocus autocomplete="tgl_lahir" />
+            <x-input-error class="mt-2" :messages="$errors->get('tgl_lahir')" />
+        </div>
+        <div class="mb-3">
+            <x-input-label for="no_hp" :value="__('Nomer HP')" />
+        </div>
+        <div class="mb-3">
+            <x-text-input wire:model="no_hp" id="no_hp" name="no_hp" type="text" class="form-control" required autofocus autocomplete="no_hp" />
+            <x-input-error class="mt-2" :messages="$errors->get('no_hp')" />
+        </div>
+        <div class="mb-3">
+            <x-input-label for="alamat" :value="__('Alamat')" />
+        </div>
+        <div class="mb-3">
+            <x-text-input wire:model="alamat" id="alamat" name="alamat" type="text" class="form-control" required autofocus autocomplete="alamat" />
+            <x-input-error class="mt-2" :messages="$errors->get('alamat')" />
         </div>
         @endif
         <div class="flex items-center gap-4">

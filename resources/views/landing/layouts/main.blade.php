@@ -3,8 +3,8 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kidney Kids - Sistem Pakar Diagnosis Penyakit Ginjal Pada anak Menggunakan Metode AHP dan Certainty Factor</title>
-  <link href="{{ asset('assets/images/logo.png') }}" rel="icon">
+  <title>MendungSTEM - Platform Digital Berbasis Etno-STEM Mega Mendung</title>
+  <link href="{{ asset('assets/images/icon-stem.png') }}" rel="icon">
 
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">

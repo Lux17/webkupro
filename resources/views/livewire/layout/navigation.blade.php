@@ -93,7 +93,7 @@ new class extends Component
 
         <li class="nav-item has-treeview my-0">
             <a class="nav-link {{ (Route::currentRouteName() == 'kelas' || Request::is('kelas/*'))  ? 'active' : 'collapsed'}}" href="{{ route('kelas') }}">
-                <i class="nav-icon fa-solid fa-virus text-white "></i>
+                <i class="nav-icon fas fa-school text-white "></i>
                 <p  class="text-white">
                     Kelas
                 </p>
@@ -101,7 +101,7 @@ new class extends Component
         </li>
         <li class="nav-item has-treeview my-0">
             <a class="nav-link {{ (Route::currentRouteName() == 'mapel' || Request::is('mapel/*'))  ? 'active' : 'collapsed'}}" href="{{ route('mapel') }}">
-                <i class="nav-icon fa-solid fa-virus text-white "></i>
+                <i class="nav-icon fas fa-chalkboard-teacher text-white "></i>
                 <p  class="text-white">
                     Mata pelajaran
                 </p>
@@ -110,7 +110,7 @@ new class extends Component
 
         <li class="nav-item has-treeview my-0">
             <a class="nav-link {{ (Route::currentRouteName() == 'files' || Request::is('files/*'))  ? 'active' : 'collapsed'}}" href="{{ route('files') }}">
-                <i class="nav-icon fa-solid fa-virus text-white"></i>
+                <i class="nav-icon far fa-folder-open text-white"></i>
                 <p  class="text-white">
                     Data/Files
                 </p>
@@ -119,7 +119,7 @@ new class extends Component
 
         <li class="nav-item has-treeview my-0">
             <a class="nav-link {{ (Route::currentRouteName() == 'materi' || Request::is('materi/*'))  ? 'active' : 'collapsed'}}" href="{{ route('materi') }}">
-                <i class="nav-icon fa-solid fa-virus text-white"></i>
+                <i class="nav-icon fas fa-book text-white"></i>
                 <p  class="text-white">
                     Materi
                 </p>
@@ -131,7 +131,7 @@ new class extends Component
         
         <li class="nav-item has-treeview my-0">
             <a class="nav-link {{ (Route::currentRouteName() == 'kuis' || Request::is('kuis/*'))  ? 'active' : 'collapsed'}}" href="{{ route('kuis') }}">
-                <i class="nav-icon fa-solid fa-virus text-white"></i>
+                <i class="nav-icon fa-solid fa-list-check text-white"></i>
                 <p  class="text-white">
                     Kuis
                 </p>
@@ -152,7 +152,7 @@ new class extends Component
 
         <li class="nav-item has-treeview">
             <a class="nav-link {{ (Route::currentRouteName() == 'guru' || Request::is('guru/*'))  ? 'active' : 'collapsed'}}" href="{{ route('guru') }}">
-                <i class="nav-icon fa-solid fa-users text-white"></i>
+                <i class="nav-icon fas fa-user-graduate text-white"></i>
                 <p  class="text-white">
                     Guru
                 </p>

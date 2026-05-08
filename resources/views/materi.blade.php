@@ -6,11 +6,11 @@
       <div class="container-fluid">
       <div class="container z-1 ">
         <div class="pagetitle mx-3 mb-2">
-          <h1>Data materi</h1>
+          <h1>Data Materi</h1>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Admin</a></li>
-              <li class="breadcrumb-item active">materi</li>
+              <li class="breadcrumb-item active">Materi</li>
             </ol>
           </nav>
         </div>
@@ -19,13 +19,13 @@
         <section class="content mb-5">
         <div class="container z-1">
           <div class="col-lg-3 col-6">
-              <div class="small-box bg-warning">
+              <div class="small-box bg-danger">
                 <div class="inner">
-                  <p>Jumlah materi</p>
+                  <p>Jumlah Materi</p>
                   <h3>{{ $hitung_materi }}</h3>
                 </div>
                 <div class="icon">
-                  <i class="fa-solid fa-list-check"></i>
+                  <i class="fa-solid fas fa-book"></i>
                 </div>
               </div>
             </div>
@@ -84,7 +84,7 @@
                           <th scope="col">Isi Materi</th>
                           <th scope="col">Tanggal</th>
                           <th scope="col">Mata Pelajaran</th>
-                          <th scope="col">Guru</th>
+
                           <th scope="col" colspan="2" class="text-center" >Aksi</th>
                         </tr>
                       </thead>
@@ -93,10 +93,9 @@
                         <tr>
                           <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $g->title }}</td>
-                            <td>{{ $g->content}}</td>
+                            <td>{{ Str::words($g->content , 8, '...') }}</td>
                             <td>{{ $g->tgl}}</td>
                             <td>{{ $g->id_mapel}}</td>
-                            <td>{{ $g->id_guru}}</td>
                             <td>
                               <a class="dropdown-item btn button-white" style="width: 5px;" href="{{ route('tampil-materi', $g->id_materi) }}" "><i class="fa-solid fa-eye" style="color: black;"></i></a>
                             </td>
@@ -115,7 +114,7 @@
                                       <div class="modal-dialog">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data materi</h1>
+                                            <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data Materi</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <div class="modal-body">
@@ -174,7 +173,7 @@
 
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Sistem Pakar Ginjal Anak. Created by Lucky Saputra</a>.</strong>
+    <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
     All rights reserved.
   </footer>
 

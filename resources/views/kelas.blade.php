@@ -19,13 +19,13 @@
             <div class="container">
                 <div class="row">
                 <div class="col-lg-3 col-6">
-                  <div class="small-box bg-info">
+                  <div class="small-box bg-success">
                     <div class="inner">
                       <p>Jumlah Kelas</p>
                       <h3>{{ $hitung_kelas }}</h3>
                     </div>
                     <div class="icon">
-                      <i class="fa-solid fa-virus"></i>
+                      <i class="fa-solid fas fa-school "></i>
                     </div>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
             @endif
 
             <form class="d-flex mx-2" method="get" action="{{ route('search_kelas') }}">
-              <input class="form-control me-2" type="text" name="search" placeholder="Cari Nama kelas" aria-label="Search">
+              <input class="form-control me-2" type="text" name="search" placeholder="Cari Nama Kelas" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Cari</button>
             </form>
             
@@ -99,7 +99,7 @@
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data kelas</h1>
+                                  <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data Kelas</h1>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -123,7 +123,7 @@
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="UbahkelasLabel">Ubah Data kelas</h1>
+                                        <h1 class="modal-title fs-5" id="UbahkelasLabel">Ubah Data Kelas</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="{{ route('update_kelas', $p->id_kelas) }}"
@@ -132,11 +132,11 @@
                                     @method('PUT')
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="InputID" class="form-label">ID kelas</label>
-                                                <input type="text" class="form-control" id="id_kelas" value="{{ $p->id_kelas }}" name="id_kelas" required="">
+                                                <label for="InputID" class="form-label">ID Kelas</label>
+                                                <input type="text" class="form-control" id="id_kelas" value="{{ $p->id_kelas }}" name="id_kelas" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="InputNama" class="form-label">Nama kelas</label>
+                                                <label for="InputNama" class="form-label">Nama Kelas</label>
                                                 <input type="text" class="form-control" id="nama_kelas" value="{{ $p->nama_kelas }}" name="nama_kelas" required="">
                                             </div>
                                         </div>
@@ -180,14 +180,14 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="TambahkelasLabel">Tambah Data kelas</h1>
+                    <h1 class="modal-title fs-5" id="TambahkelasLabel">Tambah Data Kelas</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST" action="/kelas/simpan" enctype="multipart/form-data">
                 @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="InputNama" class="form-label">Nama kelas</label>
+                            <label for="InputNama" class="form-label">Nama Kelas</label>
                             <input type="text" class="form-control" id="nama_kelas" name="nama_kelas" required="" >
                         </div>
                     </div>
@@ -209,7 +209,7 @@
 
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">. Created by </a>.</strong>
+    <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
     All rights reserved.
   </footer>
 

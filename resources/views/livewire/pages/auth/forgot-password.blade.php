@@ -34,8 +34,8 @@ new #[Layout('layouts.guest')] class extends Component
 
 <div class="border p-4 my-5 rounded bg-white forgot">
 <div class ="align-center text-center">
-    <img src="{{ asset('assets/images/logo.png') ;}}" style="height: 60px;" alt="">
-    <h5 style="color: #0a44c1;">SP KidneyKids</h5>
+    <img src="{{ asset('assets/images/icon-stem.png') ;}}" style="height: 60px;" alt="">
+    <h5 style="color: #0a44c1;">MendungSTEM</h5>
 </div>
 <div  >
 <div class="col-12 forgot">

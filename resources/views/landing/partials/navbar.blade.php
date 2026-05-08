@@ -2,8 +2,8 @@
       <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
               <a class="navbar-brand mx-3" href="#" >
-                <img src="{{ asset('assets/images/logo.png') }}" style="width: 40px; height: 40px;" alt="logo" class="mx-3 d-inline-block align-text-top">
-                <span class="d-inline-block align-text-top text-primary ml-1"><b>SP KidneyKids</b></span>
+                <img src="{{ asset('assets/images/icon-stem.png') }}" style="width: 45px; height: 45px;" alt="logo" class="mx-3 d-inline-block align-text-top">
+                <span class="d-inline-block align-text-top text-primary ml-1"><b>MendungSTEM</b></span>
               </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

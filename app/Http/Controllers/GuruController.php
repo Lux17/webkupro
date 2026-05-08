@@ -199,7 +199,10 @@ class GuruController extends Controller
             session()->start();
             $check = Auth::user();
 
-            $hapus_users = User::where('id', $id)->delete();
+            $cari_email = User::where('id', $id)->pluck('email');
+            $hapus_token  = DB::table('password_reset_tokens')->where('email', $cari_email)->delete();
+            $hapus_sesi = DB::table('sessions')->where('user_id', $id)->delete();
+            $hapus_guru = User::where('id', $id)->delete();
             //hitung fdata pengguna
             $hitung_users = User::where('rolename', 'like', 'guru')->get()->count();
             //menampilkan data

@@ -24,6 +24,7 @@ class Mapel extends Model
     {
         return $this->belongsTo(User::class, 'id_guru');
     }
+
     public function kuis()
     {
         return $this->hasMany(Kuis::class, 'id_mapel');

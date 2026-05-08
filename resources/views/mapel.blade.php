@@ -19,13 +19,13 @@
             <div class="container">
                 <div class="row">
                 <div class="col-lg-3 col-6">
-                  <div class="small-box bg-info">
+                  <div class="small-box bg-warning">
                     <div class="inner">
                       <p>Jumlah Mata Pelajaran</p>
                       <h3>{{ $hitung_mapel }}</h3>
                     </div>
                     <div class="icon">
-                      <i class="fa-solid fa-virus"></i>
+                      <i class="fa-solid fas fa-chalkboard-teacher"></i>
                     </div>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
             @endif
 
             <form class="d-flex mx-2" method="get" action="{{ route('search_mapel') }}">
-              <input class="form-control me-2" type="text" name="search" placeholder="Cari Nama mapel" aria-label="Search">
+              <input class="form-control me-2" type="text" name="search" placeholder="Cari Nama Mata Pelajaran" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Cari</button>
             </form>
             
@@ -65,7 +65,7 @@
                     <div class="col-12">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Tabel Data Mapel</h3>
+                          <h3 class="card-title">Tabel Data Mata Pelajaran</h3>
                           <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                             </div>
@@ -91,7 +91,7 @@
                           <td>{{ $p->id_mapel }}</td>
                           <td>{{ $p->nama_mapel }}</td>
                           <td>{{ $p->kelas->nama_kelas }}</td>
-                          <td>{{ $p->id_guru}}</td>
+                          <td>{{ $p->id_guru }}</td>
                           <td>
                             <a class="dropdown-item btn button-primary" style="width: 5px;" data-bs-toggle="modal" data-bs-target="#Ubahmapel{{ $p->id_mapel }}" ><i class="fa-regular fa-pen-to-square" style="color: blue;"></i></a>
                           </td>
@@ -103,7 +103,7 @@
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data mapel</h1>
+                                  <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data Mata Pelajaran</h1>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -127,7 +127,7 @@
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="UbahmapelLabel">Ubah Data mapel</h1>
+                                        <h1 class="modal-title fs-5" id="UbahmapelLabel">Ubah Data Mata Pelajaran</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="{{ route('update_mapel', $p->id_mapel) }}"
@@ -137,7 +137,7 @@
                                         <div class="modal-body">
                                             <div class="mb-3">
                                                 <label for="InputID" class="form-label">ID mapel</label>
-                                                <input type="text" class="form-control" id="id_mapel" value="{{ $p->id_mapel }}" name="id_mapel" required="">
+                                                <input type="text" class="form-control" id="id_mapel" value="{{ $p->id_mapel }}" name="id_mapel" readonly>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="InputNama" class="form-label">Nama mapel</label>
@@ -249,7 +249,7 @@
 
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Created by </a>.</strong>
+    <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
     All rights reserved.
   </footer>
 

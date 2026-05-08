@@ -17,7 +17,7 @@
         <div class="container">
         <div class="col-lg-3 col-6">
             <!-- small box -->
-              <div class="small-box bg-success">
+              <div class="small-box bg-warning">
                 <div class="inner">
                     <p>Jumlah Siswa</p>
                   <h3>{{ $hitung_users }}</h3>
@@ -325,10 +325,10 @@
 
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Sistem Pakar Ginjal Anak. Created by Lucky Saputra</a>.</strong>
+    <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
     All rights reserved.
   </footer>
-
+  
   </main>
 
     

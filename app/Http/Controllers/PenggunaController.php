@@ -197,8 +197,12 @@ class PenggunaController extends Controller
             
             session()->start();
             $check = Auth::user();
-
+            
+            $cari_email = User::where('id', $id)->pluck('email');
+            $hapus_token  = DB::table('password_reset_tokens')->where('email', $cari_email)->delete();
+            $hapus_sesi = DB::table('sessions')->where('user_id', $id)->delete();
             $hapus_users = User::where('id', $id)->delete();
+
             //hitung fdata pengguna
             $hitung_users = User::where('rolename', 'like', 'pengguna')->get()->count();
             //menampilkan data

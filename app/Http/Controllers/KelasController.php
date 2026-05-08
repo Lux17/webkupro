@@ -89,10 +89,9 @@ class KelasController extends Controller
             $hitung_kelas = Kelas::all()->count();
 
 
-                $idnext = $hitung_kelas + 1;
+                
                 //input ke database
                 Kelas::insert([
-                    'id_kelas' => $idnext,
                   
                     'nama_kelas' => $request->nama_kelas,
                 ]);

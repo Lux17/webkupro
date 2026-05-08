@@ -5,12 +5,12 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>Sistem Pakar Diagnosis Penyakit Ginjal Pada anak Menggunakan Metode AHP dan Certainty Factor</title>
+  <title>MendungSTEM - Platform Digital Berbasis Etno-STEM Mega Mendung</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
 
-  <link href="{{ asset('assets/images/logo.png') }}" rel="icon">
+  <link href="{{ asset('assets/images/icon-stem.png') }}" rel="icon">
 
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />

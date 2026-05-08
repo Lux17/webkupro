@@ -256,7 +256,7 @@
   </div>
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Sistem Pakar Ginjal Anak. Created by Lucky Saputra</a>.</strong>
+    <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
     All rights reserved.
   </footer>
 

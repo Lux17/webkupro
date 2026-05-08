@@ -105,10 +105,9 @@ class MapelController extends Controller
             $guru = User::with('mapel')->where('rolename', 'like', 'guru')->get();
 
 
-                $idnext = $hitung_mapel + 1;
+                
                 //input ke database
                 Mapel::insert([
-                    'id_mapel' => $idnext,
                     'nama_mapel' => $request->nama_mapel,
                     'id_kelas' => $request->id_kelas,
                     'id_guru' => $request->id_guru,
@@ -160,6 +159,7 @@ class MapelController extends Controller
                     'id_mapel' => request()->id_mapel,
                     'nama_mapel' => request()->nama_mapel,
                     'id_guru' => $request->id_guru,
+                    'id_kelas' => $request->id_kelas,
 
             
                 ]);

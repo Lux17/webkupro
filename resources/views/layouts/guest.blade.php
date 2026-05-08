@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Sistem Pakar Diagnosis Penyakit Ginjal Pada anak Menggunakan Metode AHP dan Certainty Factor</title>
+        <title>MendungSTEM - Platform Digital Berbasis Etno-STEM Mega Mendung</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
-        <link href="{{ asset('assets/images/logo.png') }}" rel="icon">
+        <link href="{{ asset('assets/images/icon-stem.png') }}" rel="icon">
         <!-- Scripts -->
         <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
     </head>
@@ -34,7 +34,7 @@
   }
 }
 </style>
-    <section id="masuk" class="bg-light align-items-center " style=" height: 175vh; background-size: cover; background-image: url({{ asset('assets/images/bg-01.jpg') ;}})">
+    <section id="masuk" class="bg-light align-items-center " style=" height: 175vh; background-size: cover; background-image: url({{ asset('assets/images/bg-awal.png') ;}})">
         <div class="container d-flex justify-content-center align-items-center" style="">
                 {{ $slot }}
             </div>

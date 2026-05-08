@@ -74,13 +74,10 @@
 
 </div>
 </section>
-<!-- footer -->
-<!-- <footer class="footer bg-dark text-white">
-      <div class="container text-center">
-        <br>
-        <span>© Copyright 2024 Sistem Pakar Ginjal Anak. Created by Lucky Saputra</span>
-      </div>
-      <br>
-</footer> -->
+
+  <!-- <footer class="main-footer">
+    <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
+    All rights reserved.
+  </footer> -->
 
 </x-user-layout>

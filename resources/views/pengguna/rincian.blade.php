@@ -7,7 +7,7 @@
     <section id="info" class="bg-light">
         <div class="bg-info border py-4 my-4 rounded bg-white " style="max-width: 1500px;">
           <div class="my-4 container justify-content-center align-items-center">
-            <h1 class="text-center text-primary mb-4">Diagnosis Penyakit Ginjal Anak</h1>
+            <h1 class="text-center text-primary mb-4">Diagnosis Penyakit  Anak</h1>
             <div class="container border">
                 <br>
                 <strong>Hasil Diagnosis</strong>
@@ -171,7 +171,7 @@
   <footer class="footer bg-dark text-white">
       <div class="container text-center">
         <br>
-        <span>© Copyright 2024 Sistem Pakar Ginjal Anak. Created by Lucky Saputra</span>
+        <span>© Copyright 2024 Sistem Pakar  Anak. Created by Lucky Saputra</span>
       </div>
       <br>
     </footer>

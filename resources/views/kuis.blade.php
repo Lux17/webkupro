@@ -6,11 +6,11 @@
       <div class="container-fluid">
       <div class="container z-1 ">
         <div class="pagetitle mx-3 mb-2">
-          <h1>Data kuis</h1>
+          <h1>Data Kuis</h1>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Admin</a></li>
-              <li class="breadcrumb-item active">kuis</li>
+              <li class="breadcrumb-item active">Kuis</li>
             </ol>
           </nav>
         </div>
@@ -19,9 +19,9 @@
         <section class="content mb-5">
         <div class="container z-1">
           <div class="col-lg-3 col-6">
-              <div class="small-box bg-warning">
+              <div class="small-box bg-info">
                 <div class="inner">
-                  <p>Jumlah kuis</p>
+                  <p>Jumlah Kuis</p>
                   <h3>{{ $hitung_kuis }}</h3>
                 </div>
                 <div class="icon">
@@ -117,7 +117,7 @@
                                       <div class="modal-dialog">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data kuis</h1>
+                                            <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data Kuis</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <div class="modal-body">
@@ -178,15 +178,6 @@
                     <div class="modal-body">
                         <label for="InputNama" class="form-label ">Kode Kuis</label>
                         <input type="text" class="form-control" id="kode_kuis" value="{{ now()->format('YmdHis') }}" name="kode_kuis" readonly>
-                        <div class="mb-3">
-                        <label for="InputNama" class="form-label">Guru</label>
-                        <select class="form-select form-control" id="id_guru" name="id_guru" required>
-                        <option  selected >Pilih..</option>
-                        @foreach ($guru as $g)
-                        <option value="{{ $g->id }}">{{ $g->name}}</option>
-                        @endforeach
-                        </select>
-                        </div>
 
                         <div class="mb-3">
                         <label for="InputNama" class="form-label">Mata pelajaran</label>
@@ -229,9 +220,8 @@
     </section>
   </div>
 
-
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Sistem Pakar Ginjal Anak. Created by Lucky Saputra</a>.</strong>
+    <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
     All rights reserved.
   </footer>
 

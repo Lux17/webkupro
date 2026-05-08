@@ -17,13 +17,13 @@
         <div class="container">
         <div class="col-lg-3 col-6">
             <!-- small box -->
-              <div class="small-box bg-success">
+              <div class="small-box bg-danger">
                 <div class="inner">
                     <p>Jumlah Guru</p>
                   <h3>{{ $hitung_users }}</h3>
                 </div>
                 <div class="icon">
-                  <i class="fa-solid fa-users"></i>
+                  <i class="fa-solid fa-user-graduate "></i>
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data guru</h1>
+                                    <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data Guru</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
@@ -315,7 +315,7 @@
 
 
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Sistem Pakar Ginjal Anak. Created by Lucky Saputra</a>.</strong>
+    <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
     All rights reserved.
   </footer>
 

@@ -184,7 +184,7 @@ class AdminController extends Controller
 
             $check = Auth::user();
             //hapus data admin
-            $cari_email = Hasil::where('idpengguna', $id)->pluck('email');
+            $cari_email = User::where('id', $id)->pluck('email');
             $hapus_token  = DB::table('password_reset_tokens')->where('email', $cari_email)->delete();
             $hapus_sesi = DB::table('sessions')->where('user_id', $id)->delete();
             $admin = User::where('id', $id)->delete();

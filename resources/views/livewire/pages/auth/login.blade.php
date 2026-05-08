@@ -21,7 +21,9 @@ new #[Layout('layouts.guest')] class extends Component
         if (Auth::user()->rolename === 'admin') {
             session()->put('is_admin', true);
             $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-    
+        }elseif(Auth::user()->rolename === 'guru') {
+            session()->put('is_guru', true);
+            $this->redirectIntended(default: route('dashboard_guru', absolute: false), navigate: true);
         }else {
             session()->put('is_user', true);
             $this->redirectIntended(default: route('info', absolute: false), navigate: true);
@@ -34,10 +36,10 @@ new #[Layout('layouts.guest')] class extends Component
 
 
 <div class ="border pt-4 mt-5 rounded bg-white align-center masuk">
-<!-- <div class ="align-center text-center">
-    <img src="{{ asset('assets/images/logo.png') ;}}" style="height: 60px;" alt="">
-    <h5 style="color: #0a44c1;">SP KidneyKids</h5>
-</div> -->
+<div class ="align-center text-center">
+    <img src="{{ asset('assets/images/icon-stem.png') ;}}" style="height: 60px;" alt="">
+    <h5 style="color: #0a44c1;">MendungSTEM</h5>
+</div>
 <center>
     <h1 style="color: #0a44c1;  ">Masuk Akun</h1>
     <p class="card-text" style="color: #343fba;">Silahkan  masuk ke akunmu.</p>

@@ -7,11 +7,11 @@
       <div class="container-fluid">
       <div class="container z-1">
         <div class="pagetitle mx-2 mb-2">
-          <h1>Data files</h1>
+          <h1>Data Files</h1>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Admin</a></li>
-              <li class="breadcrumb-item active">files</li>
+              <li class="breadcrumb-item active">Files</li>
             </ol>
           </nav>
         </div>
@@ -19,13 +19,13 @@
             <div class="container">
                 <div class="row">
                 <div class="col-lg-3 col-6">
-                  <div class="small-box bg-info">
+                  <div class="small-box bg-secondary">
                     <div class="inner">
-                      <p>Jumlah files</p>
+                      <p>Jumlah Files</p>
                       <h3>{{ $hitung_files }}</h3>
                     </div>
                     <div class="icon">
-                      <i class="fa-solid fa-virus"></i>
+                      <i class="fa-solid far fa-folder-open "></i>
                     </div>
                   </div>
                 </div>
@@ -65,7 +65,7 @@
                     <div class="col-12">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Tabel Data files</h3>
+                          <h3 class="card-title">Tabel Data Files</h3>
                           <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                             </div>
@@ -114,7 +114,7 @@
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data files</h1>
+                                  <h1 class="modal-title fs-5" id="hapusLabel">Hapus Data Files</h1>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -138,7 +138,7 @@
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="UbahfilesLabel">Ubah Data files</h1>
+                                        <h1 class="modal-title fs-5" id="UbahfilesLabel">Ubah Data Files</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="{{ route('update_files', $p->id_files) }}"
@@ -148,7 +148,7 @@
                                         <div class="modal-body">
                                        <input type="hidden" class="form-control" id="tgl" value="{{ now() }}" name="tgl" readonly>
                                         <div class="mb-3">
-                                            <label for="InputNama" class="form-label">Nama files</label>
+                                            <label for="InputNama" class="form-label">Nama Files</label>
                                             <input type="text" class="form-control" id="nama_files" name="nama_files" value="{{ $p->nama_files }}" required="" >
                                         </div>
                                         <div class="mb-3">
@@ -196,7 +196,7 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="TambahfilesLabel">Tambah Data files</h1>
+                    <h1 class="modal-title fs-5" id="TambahfilesLabel">Tambah Data Files</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST" action="/files/simpan" enctype="multipart/form-data">
@@ -204,7 +204,7 @@
                     <div class="modal-body">
                         <input type="hidden" class="form-control" id="tgl" value="{{ now() }}" name="tgl" readonly>
                         <div class="mb-3">
-                            <label for="InputNama" class="form-label">Nama files</label>
+                            <label for="InputNama" class="form-label">Nama Files</label>
                             <input type="text" class="form-control" id="nama_files" name="nama_files" required="" >
                         </div>
                         <div class="mb-3">
@@ -234,7 +234,7 @@ function copyText(text) {
 }
 </script>
   <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="#">Sistem Pakar Ginjal Anak. Created by Lucky Saputra</a>.</strong>
+    <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
     All rights reserved.
   </footer>
 

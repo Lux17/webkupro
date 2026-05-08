@@ -2,25 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PenyakitController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\KuisController;
 use App\Http\Controllers\QuizController;
-use App\Http\Controllers\GejalaController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\MateriController;
-use App\Http\Controllers\AturanController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\LaporanhasilController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\InfoController;
-use App\Http\Controllers\DiagnosisController;
-use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\EmailController;
 
@@ -29,19 +23,16 @@ Route::view('/', 'landing/index');
 
 //Admin
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/penyakit', [PenyakitController::class, 'index'])->name('penyakit');
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
 Route::get('/mapel', [MapelController::class, 'index'])->name('mapel');
-Route::get('/gejala', [GejalaController::class, 'index'])->name('gejala');
 Route::get('/materi', [MateriController::class, 'index'])->name('materi');
 Route::get('/kuis', [KuisController::class, 'index'])->name('kuis');
-Route::get('/aturan', [AturanController::class, 'index'])->name('aturan');
-Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan');
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
 Route::get('/guru', [GuruController::class, 'index'])->name('guru');
-Route::get('/files', [FilesController::class, 'index'])->name('files');
+
 Route::get('/email-verif', [EmailController::class, 'index'])->name('email-verif');
+Route::get('/files', [FilesController::class, 'index'])->name('files');
 Route::get('/tambah-materi', [MateriController::class, 'tambah_materi'])->name('tambah-materi');
 Route::get('/ubah-materi/{id_materi}', [MateriController::class, 'ubah_materi'])->name('ubah-materi');
 Route::get('/tampil-materi/{id_materi}', [MateriController::class, 'tampil_materi'])->name('tampil-materi');
@@ -55,23 +46,15 @@ Route::post('/hasil', [KuisController::class, 'hasil'])->name('hasil');
 Route::get('/class/{id_kelas}', [ClassController::class, 'index'])->name('class');
 Route::get('/lessons/{id_materi}', [LessonsController::class, 'index'])->name('lessons');
 Route::get('/quiz/{kode_kuis}', [QuizController::class, 'index'])->name('quiz');
-
+Route::post('/result', [ResultController::class, 'index'])->name('result');
+Route::get('/result_user{kode_kuis}', [ResultController::class, 'index'])->name('result_user');
 
 //pengguna
 Route::get('/info', [InfoController::class, 'index'])->name('info');
-Route::get('/diagnosis', [DiagnosisController::class, 'index'])->name('diagnosis');
-Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat');
-Route::get('/rincian/{id}', [RiwayatController::class, 'rincian'])->name('rincian');
 Route::get('/unduh/{id}', [DownloadController::class, 'unduh'])->name('unduh');
 Route::get('/riwayat/cari_riwayat', 'App\Http\Controllers\RiwayatController@search_riwayat')->name('cari_riwayat');
 
 //Crud
-//Data penyakit
-Route::get('/penyakit/search_penyakit', 'App\Http\Controllers\PenyakitController@search_penyakit')->name('search_penyakit');
-Route::post('/penyakit/simpan', 'App\Http\Controllers\PenyakitController@simpan')->name('simpan');
-Route::put('/penyakit/update_penyakit/{id}', 'App\Http\Controllers\PenyakitController@update_penyakit')->name('update_penyakit');
-Route::delete('/penyakit/hapus_penyakit/{id}', 'App\Http\Controllers\PenyakitController@hapus_penyakit')->name('hapus_penyakit');
-
 //kelas
 Route::get('/kelas/search_kelas', 'App\Http\Controllers\KelasController@search_kelas')->name('search_kelas');
 Route::post('/kelas/simpan', 'App\Http\Controllers\KelasController@simpan')->name('simpan');
@@ -122,6 +105,10 @@ Route::post('/guru/simpan', 'App\Http\Controllers\GuruController@simpan')->name(
 Route::put('/guru/update_guru/{id}', 'App\Http\Controllers\GuruController@update_guru')->name('update_guru');
 Route::delete('/guru/hapus_guru/{id}', 'App\Http\Controllers\GuruController@hapus_guru')->name('hapus_guru');
 
+
+
+// DASHBOARD GURU
+Route::get('/dashboard_guru', [DashboardController::class, 'index_guru'])->name('dashboard_guru');
 
 // Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth', 'verified'])

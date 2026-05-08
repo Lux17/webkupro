@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Sistem Pakar Diagnosis Penyakit Ginjal Pada anak Menggunakan Metode AHP dan Certainty Factor</title>
+        <title>MendungSTEM - Platform Digital Berbasis Etno-STEM Mega Mendung</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

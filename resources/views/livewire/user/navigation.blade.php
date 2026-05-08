@@ -21,8 +21,8 @@ new class extends Component
   <div class="d-flex align-items-center justify-content-between ">
     <div class="d-flex align-items-center justify-content-between mx-5">
       <a href="{{ route('info')}}" class="logo d-flex align-items-center text-decoration-none">
-        <img src="{{ asset('assets/images/logo.png') }}" style="width: 40px; height: 40px;" alt="">
-        <span class="d-none d-lg-block mx-3"><b>SP KidneyKids</b></span>
+        <img src="{{ asset('assets/images/icon-stem.png') }}" style="width: 40px; height: 40px;" alt="">
+        <span class="d-none d-lg-block mx-3"><b>MendungSTEM </b></span>
       </a>
     </div> 
   </div>
@@ -37,13 +37,9 @@ new class extends Component
                   </button>
                 <ul class="dropdown-menu">
                 <center>
-                <li>                        
                     <x-dropdown-link :href="route('profile')" wire:navigate style="text-decoration: none;">
                     {{ __('Profil') }}
                     </x-dropdown-link></li>
-                  <li><a class="dropdown-item text-primary mx-2" href="{{ route('diagnosis')}}">Diagnosis</a></li>
-                  <li><a class="dropdown-item text-primary mx-2" href="{{ route('riwayat')}}">Riwayat Diagnosis</a></li>
-                  <li>
                       <button  data-bs-toggle="modal" data-bs-target="#keluar"  style="text-decoration: none; border: none;  background-color: transparent;">
                       <x-dropdown-link  style="text-decoration: none; ">
                           {{ __('Keluar') }}

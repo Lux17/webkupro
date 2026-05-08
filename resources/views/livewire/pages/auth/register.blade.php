@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Kelas;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -10,16 +11,24 @@ use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component
 {
-    public string $name = '';
-    public string $email = '';
-    public string $password = '';
-    public string $password_confirmation = '';
-    public string $jenis_kelamin = '';
-    public string $rolename = 'pengguna';
-    public string $no_hp = '';
-    public string $alamat = '';
-    public string $riwayat_penyakit = '';
-    public string $tgl_lahir = '';
+        public string $name = '';
+        public string $email = '';
+        public string $password = '';
+        public string $password_confirmation = '';
+        public string $jenis_kelamin = '';
+        public string $rolename = 'pengguna';
+        public string $nisn = '';
+        public string $alamat = '';
+        public $id_kelas = null;
+        public $tgl_lahir = null;
+        public string $no_hp = '';
+
+    public $kelas = [];
+
+        public function mount()
+        {
+            $this->kelas = Kelas::orderBy('id_kelas', 'asc')->get();
+        }
 
 
     public function register(): void
@@ -28,12 +37,14 @@ new #[Layout('layouts.guest')] class extends Component
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-            'jenis_kelamin' => [ 'string', 'max:25'],
-            'no_hp' => [ 'string', 'max:25'],
-            'rolename' => [ 'string', 'max:25'],
-            'alamat' => [ 'string', 'max:200'],
-            'riwayat_penyakit' => [ 'string', 'max:25'],
-            'tgl_lahir' => [ 'date'],
+            'jenis_kelamin' => ['nullable', 'string', 'max:25'],
+            'no_hp' => ['nullable', 'string', 'max:25'],
+            'rolename' => ['nullable', 'string', 'max:25'],
+            'nisn' => ['nullable', 'string', 'max:25'],
+            'alamat' => ['nullable', 'string', 'max:200'],
+            'id_kelas' => ['nullable', 'integer'],
+            'tgl_lahir' => ['nullable', 'date'],
+
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
@@ -66,6 +77,14 @@ new #[Layout('layouts.guest')] class extends Component
         <div class="mb-3">
             <x-text-input wire:model="email" id="email" class="form-control" type="email" name="email" placeholder="Masukan Email" required  />
             <x-input-error :messages="$errors->get('email')" class="text-danger" />
+        </div>
+
+        <div class="mb-3">
+            <x-input-label for="name" :value="__('NISN')" />
+        </div>
+        <div class="mb-3">
+            <x-text-input wire:model="nisn" id="nisn" class="form-control" type="text" name="nisn" placeholder="Masukan NISN" required  />
+            <x-input-error :messages="$errors->get('nisn')" class="text-danger" />
         </div>
 
         <!-- Kata Sandi -->
@@ -112,6 +131,13 @@ new #[Layout('layouts.guest')] class extends Component
                     <option value="Perempuan">Perempuan</option>
                 </select>
         </div>
+        <label for="InputName" class="form-label">Kelas</label>
+        <select class="form-control" wire:model="id_kelas" name="id_kelas">
+            <option value="">Pilih</option>
+            @foreach($kelas as $k)
+                <option value="{{ $k->id_kelas }}">{{ $k->nama_kelas }}</option>
+            @endforeach
+        </select>
         <div class="mb-3">
             <label for="InputName" class="form-label">Alamat</label>
             <textarea type="text" wire:model="alamat" class="form-control" id="alamat" name="alamat" required> </textarea>
@@ -125,13 +151,6 @@ new #[Layout('layouts.guest')] class extends Component
             <x-input-error :messages="$errors->get('no_hp')" class="text-danger" />
         </div>
 
-        <div class="mb-3">
-            <x-input-label for="riwayat_penyakit" :value="__('Riwayat Penyakit')" />
-        </div>
-        <div class="mb-3">
-            <x-text-input wire:model="riwayat_penyakit" id="riwayat_penyakit" class="form-control" type="text"  placeholder="Masukan Riwayat Penyakit" name="riwayat_penyakit" required />
-            <x-input-error :messages="$errors->get('riwayat_penyakit')" class="text-danger" />
-        </div>
 
         <div class="mb-3 d-grid gap-2">
         <x-primary-button class="btn btn-large btn-block btn-primary tombol">

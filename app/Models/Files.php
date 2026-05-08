@@ -13,4 +13,6 @@ class Files extends Model
     protected $primaryKey = 'id_files';
     protected $fillable = ['nama_files', 'id_files', 'tgl', 'id_user'];
     public $timestamps = false;
+
+
 }

@@ -43,18 +43,23 @@
           </div>
         <div class="bg-info border p-4 rounded bg-white " style="max-width: auto;">
           <div class="container justify-content-center align-items-center">
-            <center>
+          
               <div class="my-5 justify-content-center align-items-center " style="width: autopx;">
  
 
 
 <section style="height: 500px; ">
 
+<div class="alert alert-danger">
+    Sisa Waktu :
+    <span id="timer"></span>
+</div>
 
 <div class="container mx-5 mt-3 ">
     <!-- Form -->
-      <form method="POST" action="{{route ('hasil')}}">
+      <form method="POST" action="{{route ('result')}}" id="quizForm">
       @csrf
+
 
 
       <table >
@@ -139,12 +144,56 @@
   </div>
 </section>
 <!-- footer -->
-<footer class="footer bg-dark text-white">
+<!-- <footer class="footer bg-dark text-white">
       <div class="container text-center">
         <br>
-        <span>© Copyright 2024 Sistem Pakar Ginjal Anak. Created by Lucky Saputra</span>
+            <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
       </div>
       <br>
-</footer>
+</footer> -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const endTime = {{ $endTime }};
+
+    const timer = document.getElementById('timer');
+
+    const form = document.getElementById('quizForm');
+
+    const countdown = setInterval(function () {
+
+        const now = new Date().getTime();
+
+        const distance = endTime - now;
+
+        if (distance <= 0) {
+
+            clearInterval(countdown);
+
+            timer.innerHTML = "00:00";
+
+            alert("Waktu habis!");
+
+            form.submit();
+
+            return;
+        }
+
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        timer.innerHTML =
+            String(minutes).padStart(2, '0') +
+            ":" +
+            String(seconds).padStart(2, '0');
+
+    }, 1000);
+
+});
+
+</script>
 
 </x-user-layout>
