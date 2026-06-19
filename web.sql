@@ -57,12 +57,13 @@ CREATE TABLE IF NOT EXISTS `jawaban_kuis` (
   `id_kuis` int DEFAULT NULL,
   `id_mapel` int DEFAULT NULL,
   PRIMARY KEY (`attempt_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table web.jawaban_kuis: ~2 rows (approximately)
+-- Dumping data for table web.jawaban_kuis: ~1 rows (approximately)
 INSERT INTO `jawaban_kuis` (`attempt_id`, `id_user`, `skor`, `timestamp`, `id_kuis`, `id_mapel`) VALUES
 	(29, 29, 50, NULL, 2, 1),
-	(30, 29, 100, NULL, 2, 1);
+	(30, 29, 100, NULL, 2, 1),
+	(31, 29, 0, NULL, 1, 4);
 
 -- Dumping structure for table web.kelas
 CREATE TABLE IF NOT EXISTS `kelas` (
@@ -71,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `kelas` (
   PRIMARY KEY (`id_kelas`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table web.kelas: ~3 rows (approximately)
+-- Dumping data for table web.kelas: ~2 rows (approximately)
 INSERT INTO `kelas` (`id_kelas`, `nama_kelas`) VALUES
 	(4, 'Kelas X'),
 	(5, 'Kelas XI'),
@@ -87,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `kuis` (
   PRIMARY KEY (`id_kuis`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table web.kuis: ~2 rows (approximately)
+-- Dumping data for table web.kuis: ~1 rows (approximately)
 INSERT INTO `kuis` (`id_kuis`, `kode_kuis`, `id_mapel`, `id_guru`, `durasi`) VALUES
 	(1, '20260501204454', 4, 66, 45),
 	(2, '20260501210453', 5, 69, 15);
@@ -117,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `materi` (
   PRIMARY KEY (`id_materi`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table web.materi: ~2 rows (approximately)
+-- Dumping data for table web.materi: ~1 rows (approximately)
 INSERT INTO `materi` (`id_materi`, `title`, `content`, `tgl`, `id_mapel`, `id_guru`) VALUES
 	(4, 'Tinjauan Ulang Materi Kimia SMP/MTS (tentatif)', '<p>isi</p>', '2026-05-01 13:43:18', '4', NULL),
 	(5, 'Hukum Dasar Kimia', '<p>isi</p>', '2026-05-01 13:44:13', '5', NULL);
@@ -146,12 +147,11 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table web.sessions: ~4 rows (approximately)
+-- Dumping data for table web.sessions: ~3 rows (approximately)
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('Akc6jfVABBQMUQGDNDh5PYvGQk01rzXTHvLWPIcU', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSGxFZENnUmZQR0d4OXdobDdwQWp3SGFYRmJaMFo5aXBHbXRNVXNnNCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1777664622),
-	('C373fZpOJFjfyuGVljFLmlTjBO8aXXjPLBSuxCvt', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiV1phYk05SWhjVFRmMlRUa1E5VkFNM2FKNzFjeEsxMjVpeW1ITjRPTyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1777670271),
-	('hJm52HICODmkRizhaHXNwERwPRIJ9e9rISidxYEh', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTjA3UzhWdjFweE04aTJtZ2JXTVQzSGdDUFRlOXA3NFM5bUZTeURBRiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1777664623),
-	('UUzij9VqLHUFuEwptPogfsbM5ykZQOcXSBaB4nST', 29, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieUt4SGZINWRBU0FLMXhJOHMyRFZEMmRqYWlSTWt6RnA4MXg5aUtwQiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9pbmZvIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjk7czo3OiJpc191c2VyIjtiOjE7fQ==', 1777669616);
+	('9nLesjtgF38bl6tA3xxOgJNsMFgx8jGnSiIuuCTV', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMmNEZmNwMkU4TWVmRG1BSmlUNHdDNmFpaWFXemJDdDI0cnhUMGV3RSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1781694878),
+	('FJKJNLE4wvUGC3JXp6ZMgOiRaiAmyJzUkn2L7O51', 29, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNW9SUUcwSDJRVlV5UXhZdDliSnR4VEdDUFNnaG9mdkh6SXVDTWxPVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9xdWl6LzIwMjYwNTAxMjA0NDU0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjk7czo3OiJpc191c2VyIjtiOjE7czoxMDoicXVpel9lbmRfMSI7TzoxMzoiQ2FyYm9uXENhcmJvbiI6Mzp7czo0OiJkYXRlIjtzOjI2OiIyMDI2LTA1LTA4IDE0OjQ0OjA5LjY1MzQzOSI7czoxMzoidGltZXpvbmVfdHlwZSI7aTozO3M6ODoidGltZXpvbmUiO3M6MzoiVVRDIjt9fQ==', 1778250226),
+	('qecADAXFY25QlyDLNHlpNnHu31YkpRRn2rPEAI21', 66, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSVhROHNkZjBxVFBXU21WZk5Cank4Z2VSMzVKV2FJbWxiV2VQY0F6QSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmRfZ3VydSI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjY2O3M6NzoiaXNfZ3VydSI7YjoxO30=', 1778253719);
 
 -- Dumping structure for table web.soal
 CREATE TABLE IF NOT EXISTS `soal` (
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `soal` (
   PRIMARY KEY (`id_soal`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table web.soal: ~6 rows (approximately)
+-- Dumping data for table web.soal: ~5 rows (approximately)
 INSERT INTO `soal` (`id_soal`, `kode_kuis`, `id_mapel`, `id_guru`, `durasi`, `pertanyaan`, `opsi_a`, `opsi_b`, `opsi_c`, `opsi_d`, `opsi_e`, `jawaban`) VALUES
 	(1, '20260425104714', 1, 63, '45', 'ibukota jawa barat28', 'Jakarta28', 'bandung28', 'cirebon38', 'semarang28', 'bali28', 'd'),
 	(8, '20260426114210', 1, 66, '45', 'Sebutkan Ibu Kota Provinsi Jawa Barat', 'Bandung', 'Jakarta', 'Cirebon', 'Bekasi', 'Bogor', 'a'),
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table web.users: ~6 rows (approximately)
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `nisn`, `nip`, `rolename`, `alamat`, `id_kelas`, `jenis_kelamin`, `tgl_lahir`, `no_hp`, `remember_token`, `updated_at`, `created_at`) VALUES
 	(25, 'Mentor567', 'admin@example.com4567', NULL, '$2y$12$pv5aOVTC.Q/p0RjVWYOPvuIz2zRYpDal.oIMhaU0M6TZxyZzDfwcW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '6834567', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-	(29, 'user1', 'user@gmail.com', NULL, '$2y$12$l5CKv49vKO365/8Ou6J/2u2.ElD0GcU/TAXf2KfQmXDUYuqW1i5lm', '12345', NULL, 'pengguna', 'Jl. Tuparev 11', 4, 'Laki-Laki', '2022-06-11', '081234567', 'O323lVyCVJ8mFQAatq15S2NKDd1EWVwZBwtpqaBVNB7A9NExN9YGSi0QT3hC', '2026-05-01 14:03:37', '0000-00-00 00:00:00'),
+	(29, 'user1', 'user@gmail.com', NULL, '$2y$12$l5CKv49vKO365/8Ou6J/2u2.ElD0GcU/TAXf2KfQmXDUYuqW1i5lm', '1234567', NULL, 'pengguna', 'Jl. Tuparev 11', 4, 'Laki-Laki', '2022-06-11', '081234567', 'hVfs6pUH0ZIStvs0qNIoPcVHvoFZLHfjSvK8mHMmq9XHGQ0ToKsFfHFJnVqC', '2026-05-08 08:04:09', '0000-00-00 00:00:00'),
 	(66, 'Zaenal  Abidin S.Si', 'guru@gmail.com', NULL, '$2y$12$BkPbLOGXqX2tOHLF919uYOb38VPb7mxK75Tnrfj5Zz3Sn8n8Tdsk6', NULL, '123456', 'guru', 'Blok Wage Plumbon', NULL, 'Laki-Laki', '1999-02-17', '081234567890', NULL, '2026-05-01 13:36:59', NULL),
 	(67, 'admin', 'admin@gmail.com', NULL, '$2y$12$QUKYDDP6QMdC5y5c/nyPB.cy2KeHNHX9ixCXoXq9rJa0KELcAXynK', NULL, NULL, 'admin', NULL, NULL, NULL, NULL, '08123456789', NULL, NULL, NULL),
 	(69, 'Tuti Pujiastuti S.Si', 'guru1@gmail.com', NULL, '$2y$12$obmzrEpmPgKeIUwPy/HSSOD18839Bh2PwcJVtKxSJmVQAy5qWQfZi', NULL, '567890', 'guru', 'Karawang Timur', NULL, 'Perempuan', '2026-05-14', '084567890123', NULL, NULL, NULL),

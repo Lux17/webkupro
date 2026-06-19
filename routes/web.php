@@ -11,6 +11,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\MateriController;
+use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\GuruController;
@@ -36,6 +37,9 @@ Route::get('/files', [FilesController::class, 'index'])->name('files');
 Route::get('/tambah-materi', [MateriController::class, 'tambah_materi'])->name('tambah-materi');
 Route::get('/ubah-materi/{id_materi}', [MateriController::class, 'ubah_materi'])->name('ubah-materi');
 Route::get('/tampil-materi/{id_materi}', [MateriController::class, 'tampil_materi'])->name('tampil-materi');
+Route::get('/tambah-episode/{id_materi}', [EpisodeController::class, 'tambah_episode'])->name('tambah-episode');
+Route::get('/tampil-episode/{id_episode}', [EpisodeController::class, 'tampil_episode'])->name('tampil-episode');
+Route::get('/ubah-episode/{id_episode}', [EpisodeController::class, 'ubah_episode'])->name('ubah-episode');
 Route::get('/tambah-kuis/{id_kuis}', [KuisController::class, 'tambah_kuis'])->name('tambah-kuis');
 Route::get('/ubah-kuis/{id_kuis}', [KuisController::class, 'ubah_kuis'])->name('ubah-kuis');
 Route::get('/tampil-kuis/{kode_kuis}', [KuisController::class, 'tampil_kuis'])->name('tampil-kuis');
@@ -73,6 +77,12 @@ Route::get('/materi/search_materi', 'App\Http\Controllers\materiController@searc
 Route::post('/materi/simpan', 'App\Http\Controllers\materiController@simpan')->name('simpan_materi');
 Route::put('/materi/update_materi/{id}', 'App\Http\Controllers\materiController@update_materi')->name('update_materi');
 Route::delete('/materi/hapus_materi/{id}', 'App\Http\Controllers\materiController@hapus_materi')->name('hapus_materi');
+
+Route::get('/episode/search_episode', 'App\Http\Controllers\EpisodeController@search_episode')->name('search_episode');
+Route::post('/episode/simpan', 'App\Http\Controllers\EpisodeController@simpan')->name('simpan_episode');
+Route::put('/episode/update_episode/{id}', 'App\Http\Controllers\EpisodeController@update_episode')->name('update_episode');
+Route::delete('/episode/hapus_episode/{id}', 'App\Http\Controllers\EpisodeController@hapus_episode')->name('hapus_episode');
+
 
 Route::get('/kuis/search_kuis', 'App\Http\Controllers\KuisController@search_kuis')->name('search_kuis');
 Route::post('/kuis/simpan', 'App\Http\Controllers\KuisController@simpan')->name('simpan_kuis');

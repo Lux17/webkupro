@@ -59,21 +59,160 @@
         </div>
     </nav>
     <div class="container mt-5 mx-5 p-4 border rounded">
-    <p>tanggal: {{ $materi->tgl }} </p>
-    <center> 
-        <h3>{{ $materi->title }}-{{ $materi->id_mapel}}</h3>
-    </center>
-    <div class="materi">
-    <p>
-        
-     {!! $content !!}
+
     </p>
+
+        <style>
+        body{
+            background:#f5f5f5;
+        }
+
+        .cover{
+            height:350px;
+            object-fit:cover;
+            width:100%;
+            border-radius:15px;
+        }
+
+        .comic-card{
+            background:#fff;
+            border-radius:15px;
+            box-shadow:0 5px 15px rgba(0,0,0,.08);
+            overflow:hidden;
+        }
+
+        .episode-item{
+            transition:.3s;
+            cursor:pointer;
+        }
+
+        .episode-item:hover{
+            background:#f8f9fa;
+            transform:translateX(5px);
+        }
+
+        .episode-thumb{
+            width:90px;
+            height:90px;
+            object-fit:cover;
+            border-radius:10px;
+        }
+
+        .badge-genre{
+            background:#00d564;
+        }
+  
+        #description{
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            transition: .3s;
+        }
+
+        #description.show{
+            -webkit-line-clamp: unset;
+        }
+
+        #toggle{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+
+    <div class="comic-card">
+
+        <!-- Cover -->
+        <img src=" {{ asset($materi->img_materi)}}"
+             class="img-fluid">
+
+        <div class="p-4">
+
+            <!-- Judul -->
+            <h2 class="fw-bold mb-2">
+                {{ $materi->title }}
+            </h2>
+
+            <!-- Informasi -->
+            <div class="mt-3 text-muted">
+                <small>
+                    📖 {{ $hitung_episode }} Episode
+                </small>
+            </div>
+            <p id="description">
+                {{ $materi->deskripsi }}
+            </p>
+
+            <a id="toggle" class="text-success fw-bold">
+                Lihat Selengkapnya
+            </a>
+        </div>
+
+    </div>
+
+
+    <!-- Episode -->
+    <div class="mt-5">
+
+        <h3 class="fw-bold mb-4">
+            Daftar Episode
+        </h3>
+
+        <div class="list-group shadow-sm rounded-4">
+        @foreach ($episode as $ep)
+            <a href="{{ route('tampil-episode', $ep->id_eps) }}" class="list-group-item list-group-item-action episode-item">
+                <div class="d-flex align-items-center">
+
+                    <img src="{{ asset($ep->img) }} "
+                         class="episode-thumb me-3">
+
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1">
+                          Episode {{ $ep->type }} - {{ $ep->nama_eps }}
+                        </h5>
+
+                        <small class="text-muted">
+                           {{ $ep->tgl }}
+                        </small>
+                    </div>
+
+                </div>
+            </a>
+
+        @endforeach
+        </div>
+
+    </div>
+
+</div>
     </div>
     </div>
 
 
 </div>
 </section>
+
+
+
+<script>
+const desc = document.getElementById('description');
+const toggle = document.getElementById('toggle');
+
+toggle.addEventListener('click', function () {
+
+    desc.classList.toggle('show');
+
+    if(desc.classList.contains('show')){
+        toggle.innerText = 'Lihat Lebih Sedikit';
+    }else{
+        toggle.innerText = 'Lihat Selengkapnya';
+    }
+
+});
+</script>
 
   <!-- <footer class="main-footer">
     <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>

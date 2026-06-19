@@ -20,7 +20,7 @@
         <br>
         <br>
         <h1>MendungSTEM</h1>
-        <p>Platform Komik Digital Berbasis Etno-STEM Mega Mendung</p>
+        <p>Platform Pembelajaran Komik Digital Berbasis Etno-STEM Mega Mendung</p>
       </div>
       <div class="my-5">
       </div>

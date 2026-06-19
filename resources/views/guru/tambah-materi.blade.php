@@ -23,18 +23,26 @@
         @csrf
 
         <div class="container mt-5" style="max-width: 1300px;">
-
+             <div class="mb-3">
+                <label for="img" class="form-label">Cover</label>
+                <input type="file" class="form-control"  name="img" required="">
+            </div>
             <!-- Judul Materi -->
             <div class="mb-4">
                 <label for="InputNama" class="form-label">Judul Materi</label>
                 <input type="text" class="form-control" name="title">
             </div>
 
-            <!-- Editor -->
             <div class="mb-4">
+                <label for="InputNama" class="form-label">Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" ></textarea>
+            </div>
+
+            <!-- Editor -->
+            <!-- <div class="mb-4">
                 <label for="InputNama" class="form-label">Materi</label>
                 <textarea name="content" id="editor"></textarea>
-            </div>
+            </div> -->
             <div>
                 <input type="hidden" class="form-control" name="tgl" value="{{ now() }}">
             </div>           

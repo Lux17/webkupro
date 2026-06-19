@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Materi;
 use App\Models\Mapel;
+use App\Models\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -349,7 +350,9 @@ class MateriController extends Controller
             $tampil = $materi->content;
             $content = str_replace('src="upload/', 'src="'.asset('upload/').'/', $tampil); 
             $mapel = Mapel::with('kelas')->get();
-            return view('guru.tampil-materi',['mapel' => $mapel, 'materi' => $materi, 'content' => $content]);
+            $episode = Episode::where('id_materi', $id_materi)->get();
+            $hitung_episode = Episode::where('id_materi', $id_materi)->count();
+            return view('guru.tampil-materi',['mapel' => $mapel, 'hitung_episode' => $hitung_episode,'episode' => $episode,'materi' => $materi, 'content' => $content]);
 
         }elseif(auth()->user()->rolename === 'pengguna'){
             return redirect('/info');

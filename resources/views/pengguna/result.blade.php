@@ -68,7 +68,7 @@
             <!-- Info Box -->
             <div class="alert alert-success mt-4">
                 <strong>Hebat!</strong><br>
-                Anda telah menyelesaikan kuis dengan sempurna.
+                Anda telah menyelesaikan kuis.
             </div>
 
             <!-- Button -->

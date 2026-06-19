@@ -32,8 +32,8 @@
 
             <!-- Editor -->
             <div class="mb-4">
-                <label for="InputNama" class="form-label">Materi</label>
-                <textarea name="content" id="editor" value="{{ $materi->content}}"> {{ $materi->content}}</textarea>
+                <label for="InputNama" class="form-label">Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" ></textarea>
             </div>
             <div>
                 <input type="hidden" class="form-control" name="tgl" value="{{ now() }}">

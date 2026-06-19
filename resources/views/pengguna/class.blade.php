@@ -80,12 +80,12 @@
 </div>
 </section>
 <!-- footer -->
-<footer class="footer bg-dark text-white">
+<!-- <footer class="footer bg-dark text-white">
       <div class="container text-center">
         <br>
             <strong>Copyright &copy; 2026 MendungSTEM<a href="#">  Created by Susanti</a>.</strong>
       </div>
       <br>
-</footer>
+</footer> -->
 
 </x-user-layout>
