@@ -138,6 +138,15 @@ new class extends Component
             </a>
         </li>
 
+        <li class="nav-item has-treeview my-0">
+            <a class="nav-link {{ (Route::currentRouteName() == 'hasil-kuis' || Request::is('hasil-kuis/*'))  ? 'active' : 'collapsed'}}" href="{{ route('hasil-kuis') }}">
+                <i class="nav-icon fa-solid fa-list text-white"></i>
+                <p  class="text-white">
+                    Nilai Kuis
+                </p>
+            </a>
+        </li>
+
         <div class="mx-3">
           <p class="text-secondary">Kelola Akun</p>
         </div>

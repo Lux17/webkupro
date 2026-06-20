@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-6">
                   <div class="small-box bg-info">
                     <div class="inner">
-                      <p>Jumlah files</p>
+                      <p>Jumlah Files</p>
                       <h3>{{ $hitung_files }}</h3>
                     </div>
                     <div class="icon">
@@ -65,7 +65,7 @@
                     <div class="col-12">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Tabel Data files</h3>
+                          <h3 class="card-title">Tabel Data Files</h3>
                           <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                             </div>
@@ -79,7 +79,6 @@
                           <th scope="col">No</th>
                           <th scope="col">Nama Berkas</th>
                           <th scope="col">Path</th>
-                          <th scope="col">Nama Akun</th>
                           <th scope="col">Tanggal</th>
                           <th scope="col">Preview</th>
                           <th scope="col" colspan="2" class="text-center">Aksi</th>
@@ -100,7 +99,6 @@
                               </button>
 
                           </td>
-                          <td>{{ $p->id_user }}</td>
                           <td>{{ $p->tgl}}</td>
                           <td><img src="{{ asset($p->file) }}" class="img-thumbnail" style="width:60px; height: 60px" /></td>
                           <td>

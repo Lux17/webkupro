@@ -6,6 +6,7 @@ use App\Models\Materi;
 use App\Models\Mapel;
 use App\Models\Episode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -26,7 +27,9 @@ class MateriController extends Controller
             $hitung_materi = Materi::count();
 
             //menampilkan materi
-            $materi = Materi::orderBy('id_materi', 'asc')->get();
+            $materi = Materi::with('mapel')
+                    ->orderBy('id_materi')
+                    ->get();
 
             //hapus notif/session
             Session::forget('danger');
@@ -35,10 +38,13 @@ class MateriController extends Controller
             return view('materi', ['materi' => $materi,'hitung_materi' => $hitung_materi]);
     
         }elseif(auth()->user()->rolename === 'guru'){
+            
             $hitung_materi = Materi::count();
 
             //menampilkan materi
-            $materi = Materi::orderBy('id_materi', 'asc')->get();
+            $materi = Materi::with('mapel')
+                    ->orderBy('id_materi')
+                    ->get();
 
             //hapus notif/session
             Session::forget('danger');
@@ -68,7 +74,8 @@ class MateriController extends Controller
             Session::forget('danger');
             session()->flash('success', 'Data materi berhasil ditemukan.');
             //cari data dari database
-            $materi = materi::where('title', 'like', "%".$keyword."%")->get();
+
+            $materi = materi::Materi::with('mapel')->where('title', 'like', "%".$keyword."%")->get();
 
             return view('materi', ['materi' => $materi,'hitung_materi' => $hitung_materi]);
         }elseif(auth()->user()->rolename === 'guru'){
@@ -81,7 +88,7 @@ class MateriController extends Controller
             Session::forget('danger');
             session()->flash('success', 'Data materi berhasil ditemukan.');
             //cari data dari database
-            $materi = materi::where('title', 'like', "%".$keyword."%")->get();
+            $materi = materi::with('mapel')->where('title', 'like', "%".$keyword."%")->get();
 
             return view('guru.materi_guru', ['materi' => $materi,'hitung_materi' => $hitung_materi]);
 
@@ -101,7 +108,7 @@ class MateriController extends Controller
              //Validasi Masukan
             $validator = Validator::make($request->all(), [
                 'title' => ['required', 'min:1'],
-                'content' => ['required', 'min:1'],
+                'deskripsi' => ['required', 'min:1'],
                 'id_mapel' => ['required', 'min:1'],
                 'tgl' => ['required', 'min:1']
             ]);
@@ -111,20 +118,33 @@ class MateriController extends Controller
                 session()->flash('danger', 'Data tidak dapat disimpan, cek data dan silahkan ulangi!!');
                 return redirect('materi')->withErrors($validator)->withInput();
             }
+
+            $file = $request->file('img');
+
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            $file->move(public_path('upload'), $fileName);
+
+            $filePath = 'upload/' . $fileName;
+    
+
             
             $hitung_materi = Materi::count();
             //nilai untuk id
           
             Materi::insert([
                 'title' => $request->title,
-                'content' => $request->content,
+                'deskripsi' => $request->deskripsi,
                 'tgl' => $request->tgl,
+                'img' => $filePath,
                 'id_mapel' => $request->id_mapel,
                 'id_guru' => $request->id_guru,
             ]);
 
             //menampilkan data
-            $materi = Materi::orderBy('id_materi', 'asc')->get();
+            $materi = Materi::with('mapel')
+                    ->orderBy('id_materi')
+                    ->get();
             Session::forget('danger');
             session()->flash('success', 'Data materi berhasil disimpan.');
             return view('materi', ['materi' => $materi,'hitung_materi' => $hitung_materi]);
@@ -133,7 +153,7 @@ class MateriController extends Controller
              //Validasi Masukan
             $validator = Validator::make($request->all(), [
                 'title' => ['required', 'min:1'],
-                'content' => ['required', 'min:1'],
+                'deskripsi' => ['required', 'min:1'],
                 'id_mapel' => ['required', 'min:1'],
                 'tgl' => ['required', 'min:1']
             ]);
@@ -143,20 +163,33 @@ class MateriController extends Controller
                 session()->flash('danger', 'Data tidak dapat disimpan, cek data dan silahkan ulangi!!');
                 return redirect('materi')->withErrors($validator)->withInput();
             }
+
+            $file = $request->file('img');
+
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            $file->move(public_path('upload'), $fileName);
+
+            $filePath = 'upload/' . $fileName;
+    
+
             
             $hitung_materi = Materi::count();
             //nilai untuk id
           
             Materi::insert([
                 'title' => $request->title,
-                'content' => $request->content,
+                'deskripsi' => $request->deskripsi,
                 'tgl' => $request->tgl,
+                'img' => $filePath,
                 'id_mapel' => $request->id_mapel,
                 'id_guru' => $request->id_guru,
             ]);
 
             //menampilkan data
-            $materi = Materi::orderBy('id_materi', 'asc')->get();
+             $materi = Materi::with('mapel')
+                    ->orderBy('id_materi')
+                    ->get();
             Session::forget('danger');
             session()->flash('success', 'Data materi berhasil disimpan.');
             return view('guru.materi_guru', ['materi' => $materi,'hitung_materi' => $hitung_materi]);
@@ -180,7 +213,7 @@ class MateriController extends Controller
             //Validasi Masukan
             $validator = Validator::make($request->all(), [
                 'title' => ['required', 'min:1'],
-                'content' => ['required', 'min:1'],
+                'deskripsi' => ['required', 'min:1'],
                 'id_mapel' => ['required', 'min:1'],
                 'tgl' => ['required', 'min:1']
             ]);
@@ -191,18 +224,32 @@ class MateriController extends Controller
                 return redirect('materi')->withErrors($validator)->withInput();
             }
             //update data
+
+            $file = $request->file('img');
+
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            $file->move(public_path('upload'), $fileName);
+
+            $filePath = 'upload/' . $fileName;
+    
+
+            
             $preferences = Materi::where('id_materi', $id_materi)
                 ->update([
                 'title' => $request->title,
-                'content' => $request->content,
+                'deskripsi' => $request->deskripsi,
                 'tgl' => $request->tgl,
+                'img' => $filePath,
                 'id_mapel' => $request->id_mapel,
                 'id_guru' => $request->id_guru,
                 ]);
     
             $hitung_materi = Materi::count();
             //menampilkan data
-            $materi = Materi::orderBy('id_materi', 'asc')->get();
+             $materi = Materi::with('mapel')
+                    ->orderBy('id_materi')
+                    ->get();
             Session::forget('danger');
             session()->flash('success', 'Data materi berhasil diubah.');
             
@@ -213,7 +260,7 @@ class MateriController extends Controller
             //Validasi Masukan
             $validator = Validator::make($request->all(), [
                 'title' => ['required', 'min:1'],
-                'content' => ['required', 'min:1'],
+                'deskripsi' => ['required', 'min:1'],
                 'id_mapel' => ['required', 'min:1'],
                 'tgl' => ['required', 'min:1']
             ]);
@@ -224,14 +271,27 @@ class MateriController extends Controller
                 return redirect('materi')->withErrors($validator)->withInput();
             }
             //update data
+
+            $file = $request->file('img');
+
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            $file->move(public_path('upload'), $fileName);
+
+            $filePath = 'upload/' . $fileName;
+    
+
+            
             $preferences = Materi::where('id_materi', $id_materi)
                 ->update([
                 'title' => $request->title,
-                'content' => $request->content,
+                'deskripsi' => $request->deskripsi,
                 'tgl' => $request->tgl,
+                'img' => $filePath,
                 'id_mapel' => $request->id_mapel,
                 'id_guru' => $request->id_guru,
                 ]);
+    
     
             $hitung_materi = Materi::count();
             //menampilkan data
@@ -261,7 +321,9 @@ class MateriController extends Controller
             $hapus_materi = Materi::where('id_materi', $id_materi)->delete();
             $hitung_materi = Materi::count();
             //menampilkan data
-            $materi = Materi::orderBy('id_materi', 'asc')->get();
+            $materi = Materi::with('mapel')
+                    ->orderBy('id_materi')
+                    ->get();
             Session::forget('success');
             session()->flash('danger', 'Data materi berhasil dihapus.');
             return view('materi', ['materi' => $materi,'hitung_materi' => $hitung_materi,'hapus_materi' => $hapus_materi]);
@@ -272,7 +334,9 @@ class MateriController extends Controller
             $hapus_materi = Materi::where('id_materi', $id_materi)->delete();
             $hitung_materi = Materi::count();
             //menampilkan data
-            $materi = Materi::orderBy('id_materi', 'asc')->get();
+            $materi = Materi::with('mapel')
+                    ->orderBy('id_materi')
+                    ->get();
             Session::forget('success');
             session()->flash('danger', 'Data materi berhasil dihapus.');
             return view('materi', ['guru.materi_guru' => $materi,'hitung_materi' => $hitung_materi,'hapus_materi' => $hapus_materi]);
@@ -298,7 +362,7 @@ class MateriController extends Controller
         }elseif(auth()->user()->rolename === 'guru'){
             session()->start();
 
-            $mapel = Mapel::with('kelas')->get();
+            $mapel = Mapel::with('kelas')->where('id_guru', Auth::id())->orderBy('id_mapel', 'asc')->get();
             return view('guru.tambah-materi',['mapel' => $mapel]);
 
         }elseif(auth()->user()->rolename === 'pengguna'){
@@ -321,8 +385,8 @@ class MateriController extends Controller
             return view('ubah-materi',['mapel' => $mapel, 'materi' => $materi]);
         }elseif(auth()->user()->rolename === 'guru'){
              session()->start();
+             $mapel = Mapel::with('kelas')->where('id_guru', Auth::id())->orderBy('id_mapel', 'asc')->get();
             $materi = Materi::where('id_materi', $id_materi)->first();
-            $mapel = Mapel::with('kelas')->get();
             return view('guru.ubah-materi',['mapel' => $mapel, 'materi' => $materi]);
         }elseif(auth()->user()->rolename === 'pengguna'){
             return redirect('/info');
@@ -337,13 +401,14 @@ class MateriController extends Controller
         if(auth()->user() === null ){
             return redirect('/');
         }elseif(auth()->user()->rolename === 'admin'){
-            
             session()->start();
             $materi = Materi::where('id_materi', $id_materi)->first();
             $tampil = $materi->content;
             $content = str_replace('src="upload/', 'src="'.asset('upload/').'/', $tampil); 
             $mapel = Mapel::with('kelas')->get();
-            return view('tampil-materi',['mapel' => $mapel, 'materi' => $materi, 'content' => $content]);
+            $episode = Episode::where('id_materi', $id_materi)->get();
+            $hitung_episode = Episode::where('id_materi', $id_materi)->count();
+            return view('tampil-materi',['mapel' => $mapel, 'hitung_episode' => $hitung_episode,'episode' => $episode,'materi' => $materi, 'content' => $content]);
         }elseif(auth()->user()->rolename === 'guru'){
             session()->start();
             $materi = Materi::where('id_materi', $id_materi)->first();

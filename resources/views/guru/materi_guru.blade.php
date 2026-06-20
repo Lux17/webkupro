@@ -80,11 +80,10 @@
                         <thead>
                         <tr>
                           <th scope="col">No</th>
-                          <th scope="col">Judul Materi</th>
-                          <th scope="col">Isi Materi</th>
+                          <th scope="col">Cover</th>
+                          <th scope="col">Judul Materi</th>   
                           <th scope="col">Tanggal</th>
                           <th scope="col">Mata Pelajaran</th>
-                          <th scope="col">Guru</th>
                           <th scope="col" colspan="2" class="text-center" >Aksi</th>
                         </tr>
                       </thead>
@@ -92,11 +91,10 @@
                       @foreach ($materi as $g)
                         <tr>
                           <th scope="row">{{ $loop->iteration }}</th>
+                            <td><img src="{{ asset($g->img) }}" class="img-thumbnail" style="width:60px; height: 60px" /></td>
                             <td>{{ $g->title }}</td>
-                            <td>{{ $g->content}}</td>
                             <td>{{ $g->tgl}}</td>
-                            <td>{{ $g->id_mapel}}</td>
-                            <td>{{ $g->id_guru}}</td>
+                            <td>{{  $g->mapel->nama_mapel }}</td>
                             <td>
                               <a class="dropdown-item btn button-white" style="width: 5px;" href="{{ route('tampil-materi', $g->id_materi) }}" "><i class="fa-solid fa-eye" style="color: black;"></i></a>
                             </td>

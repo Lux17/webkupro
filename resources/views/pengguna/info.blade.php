@@ -110,7 +110,7 @@
       <div class="card-body d-flex justify-content-between align-items-center">
 
         <div>
-          <h5>{{ $k->kode_kuis }}</h5>
+          <h5>{{ $k->nama_kuis }}</h5>
           <small class="text-muted">
             {{ $n->kelas->nama_kelas ?? '-' }} - Durasi: {{ $k->durasi }} Menit
           </small>

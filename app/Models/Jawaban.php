@@ -29,14 +29,19 @@ class Jawaban extends Model
 
 
     // ke user
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'id_user');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'id_user');
+    // }
 
     // ke kuis (soal / quiz)
     public function kuis()
     {
         return $this->belongsTo(Kuis::class, 'id_kuis');
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class, 'id_user', 'id');
+}
 }

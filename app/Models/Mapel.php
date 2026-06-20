@@ -25,9 +25,15 @@ class Mapel extends Model
         return $this->belongsTo(User::class, 'id_guru');
     }
 
+
     public function kuis()
     {
-        return $this->hasMany(Kuis::class, 'id_mapel');
+        return $this->hasMany(Kuis::class, 'id_mapel', 'id_mapel');
+    }
+
+    public function materi()
+    {
+        return $this->hasMany(Materi::class, 'id_mapel', 'id_mapel');
     }
 
 }

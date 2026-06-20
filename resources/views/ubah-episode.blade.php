@@ -18,7 +18,7 @@
         </div>
     </nav>
     <!-- Form -->
-        <form action="{{ route('update_materi', $materi->id_materi) }}" method="POST"  enctype="multipart/form-data">
+        <form action="{{ route('update_episode', $episode->id_eps) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -26,31 +26,50 @@
 
             <!-- Judul Materi -->
             <div class="mb-4">
-                <label for="InputNama" class="form-label">Judul Materi</label>
-                <input type="text" class="form-control" name="title" value="{{ $materi->title }}"> 
+                <label for="InputNama" class="form-label">Nama Episode</label>
+                <input type="text" class="form-control" name="nama_eps" value="{{ $episode->nama_eps }}">
             </div>
+
+
             <div class="mb-3">
                 <label for="img" class="form-label">Cover</label>
                 <input type="file" class="form-control"  name="img" required="">
             </div>
 
+                <div class="mb-3">
+                <label for="InputNama" class="form-label">Episode</label>
+                 <select class="form-select form-control" id="type" name="type" value="{{ $episode->type }}" required>
+                <option  selected value="{{ $episode->type }}">Pilih..</option>
+                 <option value="1">Episode 1</option>
+                 <option value="2">Episode 2</option>
+                 <option value="3">Episode 3</option>
+                 <option value="4">Episode 4</option>
+                 <option value="5">Episode 5</option>
+                 <option value="6">Episode 6</option>
+                 <option value="7">Episode 7</option>
+                 <option value="8">Episode 8</option>
+                 <option value="9">Episode 9</option>
+                 <option value="10">Episode 10</option>
+                 <option value="11">Episode 11</option>
+                 <option value="12">Episode 12</option>
+                 <option value="13">Episode 13</option> 
+                 <option value="14">Episode 14</option>  
+                 <option value="15">Episode 15</option>                         
+               </select>
+             </div>
+
             <!-- Editor -->
             <div class="mb-4">
-                <label for="InputNama" class="form-label">Deskripsi</label>
-                <textarea name="deskripsi" class="form-control" value="{{ $materi->deskripsi }}">{{ $materi->deskripsi }}</textarea>
+                <label for="InputNama" class="form-label">Materi/isi Episode</label>
+                <textarea  id="editor" name="isi_eps" value="{{ $episode->isi_eps }}">{{ $episode->isi_eps }}</textarea>
             </div>
             <div>
                 <input type="hidden" class="form-control" name="tgl" value="{{ now() }}">
             </div>           
-             <div class="mb-3">
-                <label for="InputNama" class="form-label">Mata Pelajaran</label>
-                <select class="form-select form-control" id="id_mapel" name="id_mapel" value="{{ $materi->id_mapel }}" required>
-                <option  selected >Pilih..</option>
-                  @foreach ($mapel as $m)
-                <option value="{{ $m->id_mapel }}">{{ $m->nama_mapel}} - {{ $m->id_guru }} </option>
-                  @endforeach
-                </select>
-             </div>
+            <div>
+                <input type="hidden" class="form-control" name="id_materi" value="{{ $episode->id_materi }}"">
+            </div>   
+
             <!-- Button -->
             <div class="mb-5">
                 <button type="submit" class="btn btn-primary btn-lg px-5">

@@ -19,7 +19,7 @@
     </nav>
 
     <!-- Form -->
-    <form method="POST" action="/materi/simpan">
+    <form method="POST" action="/materi/simpan"  enctype="multipart/form-data">
         @csrf
 
         <div class="container mt-5" style="max-width: 1300px;">

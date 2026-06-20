@@ -78,6 +78,7 @@
                         <thead>
                         <tr>
                           <th scope="col">No</th>
+                          <th scope="col">Nama kuis</th>
                           <th scope="col">Kode kuis</th>
                           <th scope="col">Mata Pelajaran</th>
                           <th scope="col">Guru</th>
@@ -90,9 +91,10 @@
                       @foreach ($kuis as $g)
                         <tr>
                           <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $g->nama_kuis }}</td>
                             <td>{{ $g->kode_kuis }}</td>
-                            <td>{{ $g->id_mapel}}</td>
-                            <td>{{ $g->id_guru}}</td>
+                            <td>{{ $g->mapel->nama_mapel }}</td>
+                            <td>{{ $user->name }}</td>
                             <td></td>
                             <td>{{ $g->durasi}} Menit</td>
                             <td>
@@ -179,12 +181,13 @@
                         <label for="InputNama" class="form-label ">Kode Kuis</label>
                         <input type="text" class="form-control" id="kode_kuis" value="{{ now()->format('YmdHis') }}" name="kode_kuis" readonly>
                         <div class="mb-3">
+                        <label for="InputNama" class="form-label ">Nama Kuis</label>
+                        <input type="text" class="form-control" id="nama_kuis" name="nama_kuis">
+                        </div>
+                        <div class="mb-3">
                         <label for="InputNama" class="form-label">Guru</label>
                         <select class="form-select form-control" id="id_guru" name="id_guru" required>
-                        <option  selected >Pilih..</option>
-                        @foreach ($guru as $g)
-                        <option value="{{ $g->id }}">{{ $g->name}}</option>
-                        @endforeach
+                        <option value="{{ $user->id }}">{{ $user->name}}</option>
                         </select>
                         </div>
 

@@ -40,18 +40,32 @@ class ResultController extends Controller
 
         $total = count($jawabanUser);
         $nilai = ($total > 0) ? ($skor / $total) * 100 : 0;
+        
+        $cekJawaban = Jawaban::where('id_user', auth()->id())
+            ->where('id_kuis', $request->id_kuis)
+            ->exists();
 
-      
-        DB::table('jawaban_kuis')->insert([
-            'id_user' => auth()->id(),
-            'id_kuis' => $request->id_kuis,
-            'id_mapel' => $request->id_mapel,
-            'skor' => $nilai,
-        ]);
+            if(!$cekJawaban){
+
+            DB::table('jawaban_kuis')->insert([
+                'id_user' => auth()->id(),
+                'id_kuis' => $request->id_kuis,
+                'id_mapel' => $request->id_mapel,
+                'skor' => $nilai,
+            ]);
+            
+            $nilai2 = $nilai;
+            session()->forget('quiz_end_'.$request->id_kuis);
+            return view('pengguna.result',['nilai2' => $nilai2]);
+        }
    
         $nilai2 = Jawaban::where('id_user', $iduser)->value('skor');
-  
-        return view('pengguna.result',['nilai2' => $nilai2]);
+
+        
+
+        session()->forget('quiz_end_'.$request->id_kuis);
+      
+        return view('pengguna.result',['nilai2' => $nilai2,'nilai' => $nilai]);
 
     }
 

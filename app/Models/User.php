@@ -64,6 +64,9 @@ class User extends Authenticatable
         ];
     }
 
-    
+    public function jawaban_kuis()
+{
+    return $this->hasMany(Jawaban::class, 'id_user', 'id');
+}
 
 }

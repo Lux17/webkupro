@@ -1,147 +1,121 @@
 <x-user-layout>
 
 <section id="info" class="bg-light d-flex flex-column min-vh-300">
-<style>
-    .card-class {
-      border-radius: 12px;
-      overflow: hidden;
-      transition: 0.3s;
-    }
 
-    .card-class:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
+  <div class="container py-4">
 
-    .card-header-custom {
-      color: white;
-      padding: 15px;
-      height: 120px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card-body small {
-      color: gray;
-    }
-
-    .bg-blue { background: #2c7be5; }
-    .bg-green { background: #20c997; }
-    .bg-orange { background: #f59f00; }
-
-    .card-footer {
-      background: white;
-      border-top: none;
-      display: flex;
-      justify-content: space-between;
-    }
-  </style>
-    
-        <div class="container">
-          </div>
-          <div class="d-flex justify-content-center align-items-center ">
-          </div>
-        <div class="bg-info border p-4 rounded bg-white " style="max-width: auto;">
-          <div class="container justify-content-center align-items-center">
-          
-              <div class="my-5 justify-content-center align-items-center " style="width: autopx;">
- 
-
-
-<section style="height: 500px; ">
-
-<div class="alert alert-danger">
-    Sisa Waktu :
-    <span id="timer"></span>
-</div>
-
-<div class="container mx-5 mt-3 ">
-    <!-- Form -->
-      <form method="POST" action="{{route ('result')}}" id="quizForm">
-      @csrf
-
-
-
-      <table >
-          <input type="hidden" name="kode_kuis" value="{{ $kode_kuis }}">
-      @foreach($soal as $i => $s)
-      <tbody>
-
-              <tr>
-                  <td>{{ $loop->iteration }}</td>
-                  <td>{{ $s->pertanyaan }}</td>
-              </tr>
-                
-              <tr>
-                  <td></td>
-                  <td>
-                      <input type="hidden" name="jawaban[{{ $i }}][id_soal]" value="{{ $s->id_soal }}">
-                      <input type="hidden" name="id_kuis" value="{{ $id_kuis }}">
-                      <input type="hidden" name="id_mapel" value="{{ $mapel_id }}">
-                      <label>
-                          <input type="radio" name="jawaban[{{ $i }}][pilihan]" value="a" required>
-                          A. {{ $s->opsi_a }}
-                      </label><br>
-                  </td>
-              </tr>
-              
-              
-              <tr>
-                  <td></td>
-                  <td>
-                          <input type="radio" name="jawaban[{{ $i }}][pilihan]" value="b">
-                          B. {{ $s->opsi_b }}
-                  </td>
-              </tr>
-
-              <tr>
-                  <td></td>
-                  <td>
-                      <label>
-                          <input type="radio" name="jawaban[{{ $i }}][pilihan]" value="c">
-                          C. {{ $s->opsi_c }}
-                      </label><br>
-                  </td>
-              </tr>
-              <tr>
-                  <td></td>
-                  <td>
-                      <label>
-                          <input type="radio" name="jawaban[{{ $i }}][pilihan]" value="d">
-                              D. {{ $s->opsi_d }}
-                      </label><br>
-                  </td>
-              </tr>
-
-
-              <tr>
-                  <td></td>
-                  <td>
-                      <label>
-                          <input type="radio" name="jawaban[{{ $i }}][pilihan]" value="e">
-                          E. {{ $s->opsi_e }}
-                          </label>
-                  </td>
-
-              </tr>
-
-
-      
-              @endforeach
-          </tbody>
-      </table>
-
-
-
-              <br>
-      <button type="submit" class="btn btn-primary">Kirim Jawaban</button>
-      </div>
-
+    <!-- Timer -->
+    <div class="sticky-top mb-4 mt-5">
+        <div class="alert alert-danger text-center shadow-sm">
+            <h5 class="mb-0">
+                ⏰ Sisa Waktu :
+                <span id="timer" class="fw-bold"></span>
+            </h5>
         </div>
+    </div>
+
+    <form method="POST" action="{{route ('result')}}" id="quizForm">
+        @csrf
+
+        <input type="hidden" name="kode_kuis" value="{{ $kode_kuis }}">
+        <input type="hidden" name="timestamp" value="{{ now() }}">
+        <input type="hidden" name="id_kuis" value="{{ $id_kuis }}">
+        <input type="hidden" name="id_mapel" value="{{ $mapel_id }}">
+
+        @foreach($soal as $i => $s)
+
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-primary text-white">
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-light text-primary me-2">
+                        {{ $loop->iteration }}
+                    </span>
+                    <strong>{{ $s->pertanyaan }}</strong>
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                <input type="hidden"
+                       name="jawaban[{{ $i }}][id_soal]"
+                       value="{{ $s->id_soal }}">
+                <div class="d-grid gap-2">
+
+                    <input type="radio"
+                        class="btn-check"
+                        name="jawaban[{{ $i }}][pilihan]"
+                        id="soal{{ $i }}a"
+                        value="a"
+                        required>
+
+                    <label class="btn btn-outline-primary text-start"
+                        for="soal{{ $i }}a">
+                        A. {{ $s->opsi_a }}
+                    </label>
+
+
+                    <input type="radio"
+                        class="btn-check"
+                        name="jawaban[{{ $i }}][pilihan]"
+                        id="soal{{ $i }}b"
+                        value="b">
+
+                    <label class="btn btn-outline-primary text-start"
+                        for="soal{{ $i }}b">
+                        B. {{ $s->opsi_b }}
+                    </label>
+
+
+                    <input type="radio"
+                        class="btn-check"
+                        name="jawaban[{{ $i }}][pilihan]"
+                        id="soal{{ $i }}c"
+                        value="c">
+
+                    <label class="btn btn-outline-primary text-start"
+                        for="soal{{ $i }}c">
+                        C. {{ $s->opsi_c }}
+                    </label>
+
+
+                    <input type="radio"
+                        class="btn-check"
+                        name="jawaban[{{ $i }}][pilihan]"
+                        id="soal{{ $i }}d"
+                        value="d">
+
+                    <label class="btn btn-outline-primary text-start"
+                        for="soal{{ $i }}d">
+                        D. {{ $s->opsi_d }}
+                    </label>
+
+
+                    <input type="radio"
+                        class="btn-check"
+                        name="jawaban[{{ $i }}][pilihan]"
+                        id="soal{{ $i }}e"
+                        value="e">
+
+                    <label class="btn btn-outline-primary text-start"
+                        for="soal{{ $i }}e">
+                        E. {{ $s->opsi_e }}
+                    </label>
+
+                </div>
+            </div>
+        </div>
+
+        @endforeach
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg px-5 shadow">
+                Kirim Jawaban
+            </button>
+        </div>
+
     </form>
 
-
-  </div>
+</div>
 </section>
 <!-- footer -->
 <!-- <footer class="footer bg-dark text-white">

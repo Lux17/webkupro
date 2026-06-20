@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Kelas;
 use App\Models\Kuis;
 use App\Models\User;
+use App\Models\Materi;
 
 
 class DashboardController extends Controller
@@ -26,11 +27,12 @@ class DashboardController extends Controller
             //hitung
             $hitung_kuis = Kuis::count();
             $hitung_kelas = Kelas::count();
+            $hitung_materi = Materi::count();
             $hitung_users =  User::where('rolename', 'like', 'pengguna')->get()->count();
             $hitung_guru =  User::where('rolename', 'like', 'guru')->get()->count();
 
 
-            return view('dashboard', ['user' => $user,'hitung_kuis' => $hitung_kuis,'hitung_kelas' => $hitung_kelas,'hitung_guru' => $hitung_guru, 'hitung_users' => $hitung_users]);
+            return view('dashboard', ['user' => $user,'hitung_kuis' => $hitung_kuis,'hitung_materi' => $hitung_materi,'hitung_kelas' => $hitung_kelas,'hitung_guru' => $hitung_guru, 'hitung_users' => $hitung_users]);
             
             
         }elseif(auth()->user()->rolename === 'pengguna'){
@@ -50,8 +52,8 @@ class DashboardController extends Controller
 
             //memanggil fungsi auth user
             $user = Auth::user();
-            //hitung
-            $hitung_kuis = Kuis::count();
+
+            $hitung_kuis = Kuis::where('id_guru', $user->id)->count();
             $hitung_kelas = Kelas::count();
             $hitung_users =  User::where('rolename', 'like', 'pengguna')->get()->count();
             $hitung_guru =  User::where('rolename', 'like', 'guru')->get()->count();

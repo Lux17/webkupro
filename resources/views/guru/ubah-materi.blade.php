@@ -18,7 +18,7 @@
         </div>
     </nav>
     <!-- Form -->
-        <form action="{{ route('update_materi', $materi->id_materi) }}" method="POST">
+        <form action="{{ route('update_materi', $materi->id_materi) }}" method="POST"  enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -30,10 +30,15 @@
                 <input type="text" class="form-control" name="title" value="{{ $materi->title }}"> 
             </div>
 
+            <div class="mb-3">
+                <label for="img" class="form-label">Cover</label>
+                <input type="file" class="form-control"  name="img" required="">
+            </div>
+
             <!-- Editor -->
             <div class="mb-4">
                 <label for="InputNama" class="form-label">Deskripsi</label>
-                <textarea name="deskripsi" class="form-control" ></textarea>
+                <textarea name="deskripsi" class="form-control" value="{{ $materi->deskripsi}}">{{ $materi->deskripsi }}</textarea>
             </div>
             <div>
                 <input type="hidden" class="form-control" name="tgl" value="{{ now() }}">

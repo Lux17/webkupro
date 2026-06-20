@@ -13,4 +13,9 @@ class Materi extends Model
     protected $primaryKey = 'id_materi';
     protected $fillable = ['title', 'content', 'tgl', 'id_mapel', 'id_guru'];
     public $timestamps = false;
+
+    public function mapel()
+{
+    return $this->belongsTo(Mapel::class, 'id_mapel', 'id_mapel');
+}
 }

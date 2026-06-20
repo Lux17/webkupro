@@ -18,78 +18,102 @@
         </div>
     </nav>
 
-    <div class="container mx-5 mt-3 ">
-    <h3>Data Soal Kuis</h3>
+<div class="container mt-4">
 
-    <table >
+    <h3 class="mb-4">Data Soal Kuis</h3>
+
     @foreach($soal as $k)
-     <tbody>
 
-            <tr>
-                <td style="width: 50px;">{{ $loop->iteration }}</td>
-                <td>{{ $k->pertanyaan }}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <label>
-                        <input type="radio" name="answers[{{ $k->id_kuis }}]" value="a" required>
-                        A. {{ $k->opsi_a }}
-                    </label><br>
-                </td>
-            </tr>
-            
-            
-            <tr>
-                <td></td>
-                <td>
-                        <input type="radio" name="answers[{{ $k->id_kuis }}]" value="b">
-                        B. {{ $k->opsi_b }}
-                </td>
-            </tr>
+    <div class="card shadow-sm mb-4">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <span class="badge bg-primary me-2">
+                    {{ $loop->iteration }}
+                </span>
 
-            <tr>
-                <td></td>
-                <td>
-                    <label>
-                        <input type="radio" name="answers[{{ $k->id_kuis }}]" value="c">
-                        C. {{ $k->opsi_c }}
-                    </label><br>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <label>
-                        <input type="radio" name="answers[{{ $k->id_kuis }}]" value="d">
-                            D. {{ $k->opsi_d }}
-                    </label><br>
-                </td>
-            </tr>
+                <strong>{{ $k->pertanyaan }}</strong>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <div class="d-grid gap-2">
+
+                <input type="radio"
+                       class="btn-check"
+                       name="answers[{{ $k->id_kuis }}]"
+                       id="soal{{ $k->id_soal }}a"
+                       value="a">
+
+                <label class="btn btn-outline-primary text-start"
+                       for="soal{{ $k->id_soal }}a">
+                    A. {{ $k->opsi_a }}
+                </label>
 
 
-            <tr>
-                <td></td>
-                <td>
-                    <label>
-                        <input type="radio" name="answers[{{ $k->id_kuis }}]" value="e">
-                        E. {{ $k->opsi_e }}
-                        </label>
-                </td>
+                <input type="radio"
+                       class="btn-check"
+                       name="answers[{{ $k->id_kuis }}]"
+                       id="soal{{ $k->id_soal }}b"
+                       value="b">
 
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                 <label for="LabelInput" class="form-label ">Jawaban Benar: </label>
-                  <p >{{ $k->jawaban }} </p>
-                </td>
-
-            </tr>
+                <label class="btn btn-outline-primary text-start"
+                       for="soal{{ $k->id_soal }}b">
+                    B. {{ $k->opsi_b }}
+                </label>
 
 
-    
-            @endforeach
+                <input type="radio"
+                       class="btn-check"
+                       name="answers[{{ $k->id_kuis }}]"
+                       id="soal{{ $k->id_soal }}c"
+                       value="c">
+
+                <label class="btn btn-outline-primary text-start"
+                       for="soal{{ $k->id_soal }}c">
+                    C. {{ $k->opsi_c }}
+                </label>
+
+
+                <input type="radio"
+                       class="btn-check"
+                       name="answers[{{ $k->id_kuis }}]"
+                       id="soal{{ $k->id_soal }}d"
+                       value="d">
+
+                <label class="btn btn-outline-primary text-start"
+                       for="soal{{ $k->id_soal }}d">
+                    D. {{ $k->opsi_d }}
+                </label>
+
+
+                <input type="radio"
+                       class="btn-check"
+                       name="answers[{{ $k->id_kuis }}]"
+                       id="soal{{ $k->id_soal }}e"
+                       value="e">
+
+                <label class="btn btn-outline-primary text-start"
+                       for="soal{{ $k->id_soal }}e">
+                    E. {{ $k->opsi_e }}
+                </label>
+
+            </div>
+
+            <hr>
+
+            <div>
+                <span class="badge bg-success">
+                    Jawaban Benar: {{ strtoupper($k->jawaban) }}
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    @endforeach
+
+</div>
         </tbody>
     </table>
     </div>

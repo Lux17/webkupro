@@ -111,14 +111,21 @@ class QuizController extends Controller
                 'id_kuis' => $request->id_kuis,
                 'id_mapel' => $request->id_mapel,
                 'skor' => $nilai,
+                'timestamp' => $request->timestamp
             ]);
+            
+            $nilai2 = $nilai;
+            session()->forget('quiz_end_'.$request->id_kuis);
+            return view('hasil',['nilai2' => $nilai2]);
         }
    
         $nilai2 = Jawaban::where('id_user', $iduser)->value('skor');
 
+        
+
         session()->forget('quiz_end_'.$request->id_kuis);
       
-        return view('hasil',['nilai2' => $nilai2]);
+        return view('hasil',['nilai2' => $nilai2,'nilai' => $nilai]);
     }
 
 }

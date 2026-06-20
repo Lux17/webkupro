@@ -325,7 +325,7 @@ class EpisodeController extends Controller
             session()->start();
 
             $mapel = Mapel::with('kelas')->get();
-            return view('tambah-episode',['mapel' => $mapel]);
+            return view('tambah-episode',['mapel' => $mapel,'id_materi' => $id_materi]);
         }elseif(auth()->user()->rolename === 'guru'){
             session()->start();
 

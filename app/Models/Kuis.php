@@ -23,4 +23,9 @@ class Kuis extends Model
         'durasi' => 'integer',
     ];
 
+    public function mapel()
+{
+    return $this->belongsTo(Mapel::class, 'id_mapel', 'id_mapel');
+}
+
 }

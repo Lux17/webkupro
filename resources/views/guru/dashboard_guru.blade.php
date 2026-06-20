@@ -11,18 +11,6 @@
         <p>Selamat datang, {{ $user->name }}!</p>
         <div class="row">
 
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <p>Jumlah Materi</p>
-                <h3>{{ $hitung_guru }}</h3>
-              </div>
-              <div class="icon">
-                <i class="fas fa-book "></i>
-              </div>
-            </div>
-          </div>
 
 
           <div class="col-lg-3 col-6">

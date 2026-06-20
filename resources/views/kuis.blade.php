@@ -78,6 +78,7 @@
                         <thead>
                         <tr>
                           <th scope="col">No</th>
+                          <th scope="col">Nama Kuis</th>
                           <th scope="col">Kode kuis</th>
                           <th scope="col">Mata Pelajaran</th>
                           <th scope="col">Guru</th>
@@ -90,8 +91,9 @@
                       @foreach ($kuis as $g)
                         <tr>
                           <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $g->nama_kuis }}</td>
                             <td>{{ $g->kode_kuis }}</td>
-                            <td>{{ $g->id_mapel}}</td>
+                            <td>{{ $g->mapel->nama_mapel }}</td>
                             <td>{{ $g->id_guru}}</td>
                             <td></td>
                             <td>{{ $g->durasi}} Menit</td>
@@ -178,7 +180,10 @@
                     <div class="modal-body">
                         <label for="InputNama" class="form-label ">Kode Kuis</label>
                         <input type="text" class="form-control" id="kode_kuis" value="{{ now()->format('YmdHis') }}" name="kode_kuis" readonly>
-
+                        <div class="mb-3">
+                        <label for="InputNama" class="form-label ">Nama Kuis</label>
+                        <input type="text" class="form-control" id="nama_kuis" name="nama_kuis">
+                        </div>
                         <div class="mb-3">
                         <label for="InputNama" class="form-label">Mata pelajaran</label>
                         <select class="form-select form-control" id="id_mapel" name="id_mapel" required>
