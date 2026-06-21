@@ -82,7 +82,6 @@
                           <th scope="col">Kode kuis</th>
                           <th scope="col">Mata Pelajaran</th>
                           <th scope="col">Guru</th>
-                          <th scope="col">Jumlah Soal</th>
                           <th scope="col">Durasi</th>
                           <th scope="col" colspan="2" class="text-center" >Aksi</th>
                         </tr>
@@ -94,8 +93,7 @@
                             <td>{{ $g->nama_kuis }}</td>
                             <td>{{ $g->kode_kuis }}</td>
                             <td>{{ $g->mapel->nama_mapel }}</td>
-                            <td>{{ $g->id_guru}}</td>
-                            <td></td>
+                            <td>{{ $g->guru->name }}</td>
                             <td>{{ $g->durasi}} Menit</td>
                             <td>
                               <a class="dropdown-item btn button-blue" style="width: 5px;" href="{{ route('tambah-kuis', $g->id_kuis) }}" "><i class="fa-solid fa-plus" style="color: black;"></i></a>

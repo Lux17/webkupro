@@ -24,8 +24,13 @@ class Kuis extends Model
     ];
 
     public function mapel()
-{
-    return $this->belongsTo(Mapel::class, 'id_mapel', 'id_mapel');
-}
+    {
+        return $this->belongsTo(Mapel::class, 'id_mapel', 'id_mapel');
+    }
+
+    public function guru()
+    {
+        return $this->belongsTo(User::class, 'id_guru', 'id');
+    }
 
 }

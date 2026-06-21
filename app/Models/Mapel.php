@@ -22,9 +22,8 @@ class Mapel extends Model
 
     public function guru()
     {
-        return $this->belongsTo(User::class, 'id_guru');
+        return $this->belongsTo(User::class, 'id_guru', 'id');
     }
-
 
     public function kuis()
     {

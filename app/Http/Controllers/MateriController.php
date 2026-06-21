@@ -357,12 +357,12 @@ class MateriController extends Controller
             
             session()->start();
 
-            $mapel = Mapel::with('kelas')->get();
+            $mapel = Mapel::with(['kelas','guru'])->get();
             return view('tambah-materi',['mapel' => $mapel]);
         }elseif(auth()->user()->rolename === 'guru'){
             session()->start();
 
-            $mapel = Mapel::with('kelas')->where('id_guru', Auth::id())->orderBy('id_mapel', 'asc')->get();
+            $mapel = Mapel::with(['kelas','guru'])->where('id_guru', Auth::id())->orderBy('id_mapel', 'asc')->get();
             return view('guru.tambah-materi',['mapel' => $mapel]);
 
         }elseif(auth()->user()->rolename === 'pengguna'){
@@ -381,11 +381,11 @@ class MateriController extends Controller
             
             session()->start();
             $materi = Materi::where('id_materi', $id_materi)->first();
-            $mapel = Mapel::with('kelas')->get();
+            $mapel = Mapel::with(['kelas','guru'])->get();
             return view('ubah-materi',['mapel' => $mapel, 'materi' => $materi]);
         }elseif(auth()->user()->rolename === 'guru'){
              session()->start();
-             $mapel = Mapel::with('kelas')->where('id_guru', Auth::id())->orderBy('id_mapel', 'asc')->get();
+             $mapel = Mapel::with(['kelas','guru'])->where('id_guru', Auth::id())->orderBy('id_mapel', 'asc')->get();
             $materi = Materi::where('id_materi', $id_materi)->first();
             return view('guru.ubah-materi',['mapel' => $mapel, 'materi' => $materi]);
         }elseif(auth()->user()->rolename === 'pengguna'){

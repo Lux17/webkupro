@@ -69,4 +69,25 @@ class User extends Authenticatable
     return $this->hasMany(Jawaban::class, 'id_user', 'id');
 }
 
+    public function mapels()
+    {
+        return $this->hasMany(Mapel::class, 'id_guru', 'id');
+    }
+
+    public function files()
+    {
+        return $this->hasMany(Files::class, 'id_user', 'id');
+    }
+
+    public function kuis()
+    {
+        return $this->hasMany(Kuis::class, 'id_guru', 'id');
+    }
+
+    public function materi()
+    {
+        return $this->hasMany(Materi::class, 'id_guru', 'id');
+    }
+
+
 }

@@ -26,7 +26,7 @@ class FilesController extends Controller
             $hitung_files = Files::all()->count();
 
             //tampil dan urutkan
-            $files = Files::orderBy('nama_files', 'asc')->get();
+            $files = Files::with('user')->orderBy('nama_files', 'asc')->get();
             //hapus notif/session
             Session::forget('danger');
             Session::forget('success');
@@ -67,7 +67,7 @@ class FilesController extends Controller
             $hitung_files = Files::all()->count();
 
             //cari data dari database
-            $files = Files::where('nama_files', 'like', "%".$keyword."%")->paginate();
+            $files = Files::with('user')->where('nama_files', 'like', "%".$keyword."%")->paginate();
             Session::forget('danger');
             session()->flash('success', 'Data files berhasil ditemukan.');
             return view('files', ['files' => $files,'hitung_files' => $hitung_files]);
@@ -132,7 +132,7 @@ class FilesController extends Controller
 
                 //menampilkan ke view
                 $hitung_files = Files::all()->count();
-                $files = Files::orderBy('id_files', 'asc')->get();
+                $files = Files::with('user')->orderBy('id_files', 'asc')->get();
                 //menampilkan pesan 
                 Session::forget('danger');
                 session()->flash('success', 'Data files berhasil disimpan.');
@@ -227,7 +227,7 @@ class FilesController extends Controller
     
             $hitung_files = Files::all()->count();
             //menampilkan da mengurutkan
-            $files = Files::orderBy('id_files', 'asc')->get();
+            $files = Files::with('user')->orderBy('id_files', 'asc')->get();
             Session::forget('danger');
             session()->flash('success', 'Data files berhasil diubah.');
             return view('files', ['files' => $files,'hitung_files' => $hitung_files]);
@@ -308,7 +308,7 @@ class FilesController extends Controller
             }
 
             $hitung_files = Files::count();
-            $files = Files::orderBy('id_files', 'asc')->get();
+            $files = Files::with('user')->orderBy('id_files', 'asc')->get();
 
             Session::forget('success');
             session()->flash('danger', 'Data files berhasil dihapus.');

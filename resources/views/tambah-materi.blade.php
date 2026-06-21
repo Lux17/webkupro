@@ -51,7 +51,7 @@
                 <select class="form-select form-control" id="id_mapel" name="id_mapel" required>
                 <option  selected >Pilih..</option>
                   @foreach ($mapel as $m)
-                <option value="{{ $m->id_mapel }}">{{ $m->nama_mapel}} - {{ $m->id_guru }} </option>
+                <option value="{{ $m->id_mapel }}">{{ $m->nama_mapel}} - {{ $m->guru->name ?? '-' }} </option>
                   @endforeach
                 </select>
              </div>

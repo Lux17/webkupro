@@ -91,7 +91,7 @@
                           <td>{{ $p->id_mapel }}</td>
                           <td>{{ $p->nama_mapel }}</td>
                           <td>{{ $p->kelas->nama_kelas }}</td>
-                          <td>{{ $p->id_guru }}</td>
+                          <td>{{ $p->guru->name }}</td>
                           <td>
                             <a class="dropdown-item btn button-primary" style="width: 5px;" data-bs-toggle="modal" data-bs-target="#Ubahmapel{{ $p->id_mapel }}" ><i class="fa-regular fa-pen-to-square" style="color: blue;"></i></a>
                           </td>

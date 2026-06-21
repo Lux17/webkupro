@@ -100,7 +100,7 @@
                               </button>
 
                           </td>
-                          <td>{{ $p->id_user }}</td>
+                          <td>{{ $p->user->name ?? '-'  }}</td>
                           <td>{{ $p->tgl}}</td>
                           <td><img src="{{ asset($p->file) }}" class="img-thumbnail" style="width:60px; height: 60px" /></td>
                           <td>

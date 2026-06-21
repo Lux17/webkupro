@@ -29,7 +29,7 @@ class KuisController extends Controller
             $hitung_kuis = kuis::count();
 
             //menampilkan kuis
-            $kuis = Kuis::with('mapel')
+            $kuis = Kuis::with(['mapel','guru'])
             ->orderBy('id_kuis', 'asc')
             ->get();
             
@@ -81,7 +81,7 @@ class KuisController extends Controller
             Session::forget('danger');
             session()->flash('success', 'Data kuis berhasil ditemukan.');
             //cari data dari database
-            $kuis = kuis::with('mapel')->where('nama_kuis', 'like', "%".$keyword."%")->get();
+            $kuis = kuis::with(['mapel','guru'])->where('nama_kuis', 'like', "%".$keyword."%")->get();
             $mapel = Mapel::orderBy('id_mapel', 'asc')->get();
             $guru =  User::where('rolename', 'like', 'guru')->get();
 
@@ -147,7 +147,7 @@ class KuisController extends Controller
             ]);
 
             //menampilkan data
-            $kuis = Kuis::with('mapel')
+            $kuis = Kuis::with(['mapel','guru'])
             ->orderBy('id_kuis', 'asc')
             ->get();
             $mapel = Mapel::orderBy('id_mapel', 'asc')->get();
@@ -239,7 +239,7 @@ class KuisController extends Controller
     
             $hitung_kuis = kuis::count();
             //menampilkan data
-            $kuis = Kuis::with('mapel')
+            $kuis = Kuis::with(['mapel','guru'])
             ->orderBy('id_kuis', 'asc')
             ->get();
             $mapel = Mapel::orderBy('id_mapel', 'asc')->get();
@@ -307,7 +307,7 @@ class KuisController extends Controller
             $hapus_kuis = kuis::where('id_kuis', $id_kuis)->delete();
             $hitung_kuis = kuis::count();
             //menampilkan data
-            $kuis = Kuis::with('mapel')
+            $kuis = Kuis::with(['mapel','guru'])
             ->orderBy('id_kuis', 'asc')
             ->get();
             $mapel = Mapel::orderBy('id_mapel', 'asc')->get();

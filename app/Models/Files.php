@@ -14,5 +14,11 @@ class Files extends Model
     protected $fillable = ['nama_files', 'id_files', 'tgl', 'id_user'];
     public $timestamps = false;
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
+    
 
 }
