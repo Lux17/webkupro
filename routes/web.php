@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelasController;
-use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LessonsController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\KuisController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\FilesController;
@@ -48,14 +48,13 @@ Route::post('/tambah-soal', [KuisController::class, 'tambah_soal'])->name('tamba
 Route::post('/ubah-soal/{id_kuis}', [KuisController::class, 'ubah_soal'])->name('ubah-soal');
 Route::get('/soal/{kode_kuis}', [KuisController::class, 'soal'])->name('soal');
 Route::post('/hasil', [KuisController::class, 'hasil'])->name('hasil');
-Route::get('/class/{id_kelas}', [ClassController::class, 'index'])->name('class');
 Route::get('/lessons/{id_materi}', [LessonsController::class, 'index'])->name('lessons');
 Route::get('/quiz/{kode_kuis}', [QuizController::class, 'index'])->name('quiz');
 Route::post('/result', [ResultController::class, 'index'])->name('result');
 Route::get('/result_user{kode_kuis}', [ResultController::class, 'index'])->name('result_user');
-
+Route::get('/class/{id_kelas}', [ClassController::class, 'index'])->name('class');
 Route::get('/hasil-kuis', [NilaiController::class, 'index'])->name('hasil-kuis');
-Route::get('/mapel/search_nilai', 'App\Http\Controllers\NilaiController@search_nilai')->name('search_nilai');
+Route::get('/hasil-kuis/search_nilai', 'App\Http\Controllers\NilaiController@search_nilai')->name('search_nilai');
 Route::get('/nilai{kode_kuis}', [NilaiController::class, 'nilai'])->name('nilai');
 
 //pengguna

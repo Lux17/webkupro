@@ -9,7 +9,7 @@ class Jawaban extends Model
     protected $table = 'jawaban_kuis'; // sesuaikan nama tabel kamu
     protected $primaryKey = 'attempt_id';
 
-    public $timestamps = false; // karena pakai kolom timestamp manual
+    public $timestamps = true; // karena pakai kolom timestamp manual
 
     protected $fillable = [
         'id_user',

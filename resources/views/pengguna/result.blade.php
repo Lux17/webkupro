@@ -58,7 +58,7 @@
 
             <!-- Title -->
             <h2 class="fw-bold">Selamat!!!</h2>
-            <p class="text-muted">nilai anda adalah</p>
+            <p class="text-muted">Nilai anda adalah</p>
 
             <!-- Score -->
             <div class="score">

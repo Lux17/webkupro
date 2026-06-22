@@ -119,7 +119,7 @@ class FilesController extends Controller
 
                 $file->move(public_path('upload'), $fileName);
 
-                $filePath = 'upload/'.$fileName;
+                $filePath = '/upload/'.$fileName;
                 $idnext = $hitung_files + 1;
 
                 //input ke database
@@ -159,7 +159,7 @@ class FilesController extends Controller
 
                 $file->move(public_path('upload'), $fileName);
 
-                $filePath = 'upload/'.$fileName;
+                $filePath = '/upload/'.$fileName;
                 $idnext = $hitung_files + 1;
 
                 //input ke database
@@ -213,7 +213,7 @@ class FilesController extends Controller
 
             $file->move(public_path('upload'), $fileName);
 
-            $filePath = 'upload/'.$fileName;
+            $filePath = '/upload/'.$fileName;
 
             //update 
             $preferences = Files::where('id_files', $id_files)
@@ -257,7 +257,7 @@ class FilesController extends Controller
 
             $file->move(public_path('upload'), $fileName);
 
-            $filePath = 'upload/'.$fileName;
+            $filePath = '/upload/'.$fileName;
 
             //update 
             $preferences = Files::where('id_files', $id_files)
@@ -342,7 +342,7 @@ class FilesController extends Controller
             Session::forget('success');
             session()->flash('danger', 'Data files berhasil dihapus.');
 
-            return view('files', [
+            return view('guru.files_guru', [
                 'files' => $files,
                 'hitung_files' => $hitung_files
             ]);

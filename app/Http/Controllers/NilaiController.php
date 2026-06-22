@@ -47,10 +47,11 @@ class NilaiController extends Controller
             return redirect('/');
         }elseif(auth()->user()->rolename === 'admin'){
             
-            $request->validate([
-                'keyword' => 'required'
-            ]);
-            $nama_kuis =  Kuis::where('id_kuis', $request->keyword)->pluck('nama_kuis');
+
+
+            $keyword = $request->keyword;
+            
+            $nama_kuis =  Kuis::where('id_kuis', $keyword)->pluck('nama_kuis');
             $kuis = Kuis::orderBy('nama_kuis')->get();
 
             $hitung_jawaban = Jawaban::count();
@@ -69,10 +70,9 @@ class NilaiController extends Controller
 
         }elseif(auth()->user()->rolename === 'guru'){
 
-                    $request->validate([
-                'keyword' => 'required'
-            ]);
-            $nama_kuis =  Kuis::where('id_kuis', $request->keyword)->pluck('nama_kuis');
+            $keyword = $request->keyword;
+
+            $nama_kuis =  Kuis::where('id_kuis', $keyword)->pluck('nama_kuis');
             $kuis = Kuis::where('id_guru', Auth::id())
             ->orderBy('id_mapel', 'asc')
             ->get();

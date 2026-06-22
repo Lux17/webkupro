@@ -122,7 +122,7 @@ class EpisodeController extends Controller
 
             $file->move(public_path('upload'), $fileName);
 
-            $filePath = 'upload/' . $fileName;
+            $filePath = '/upload/' . $fileName;
 
             // Simpan data
             Episode::create([
@@ -170,7 +170,7 @@ class EpisodeController extends Controller
 
             $file->move(public_path('upload'), $fileName);
 
-            $filePath = 'upload/' . $fileName;
+            $filePath = '/upload/' . $fileName;
 
             // Simpan data
             Episode::create([
@@ -213,7 +213,7 @@ class EpisodeController extends Controller
 
             $file->move(public_path('upload'), $fileName);
 
-            $filePath = 'upload/' . $fileName;
+            $filePath = '/upload/' . $fileName;
     
 
         Episode::where('id_eps', $id_eps)->Update([
@@ -245,7 +245,7 @@ class EpisodeController extends Controller
 
             $file->move(public_path('upload'), $fileName);
 
-            $filePath = 'upload/' . $fileName;
+            $filePath = '/upload/' . $fileName;
     
 
         Episode::where('id_eps', $id_eps)->Update([

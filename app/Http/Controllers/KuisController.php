@@ -44,9 +44,10 @@ class KuisController extends Controller
         }elseif(auth()->user()->rolename === 'guru'){
             //hitung kuis
             $user = Auth::user();
-            $kuis = Kuis::with('mapel')->where('id_guru', Auth::id())
-                            ->orderBy('id_kuis')
-                            ->get();
+            $kuis = Kuis::with(['mapel','guru'])
+            ->orderBy('id_kuis', 'asc')
+            ->get();
+
 
             $hitung_kuis = Kuis::where('id_guru', $user->id)->count();
             
@@ -97,7 +98,8 @@ class KuisController extends Controller
             Session::forget('danger');
             session()->flash('success', 'Data kuis berhasil ditemukan.');
             //cari data dari database
-            $kuis = Kuis::with('mapel')->where('id_guru', Auth::id())
+            
+            $kuis = Kuis::with(['mapel','guru'])->where('id_guru', Auth::id())
             ->where('nama_kuis', 'like', "%{$keyword}%")
             ->get();
            $mapel = Mapel::where('id_guru', Auth::id())->orderBy('id_mapel', 'asc')->get();
@@ -187,7 +189,7 @@ class KuisController extends Controller
             ]);
 
             //menampilkan data
-            $kuis = Kuis::with('mapel')->where('id_guru', Auth::id())
+            $kuis = Kuis::with(['mapel','guru'])->where('id_guru', Auth::id())
                             ->orderBy('id_kuis')
                             ->get();
 
@@ -275,7 +277,7 @@ class KuisController extends Controller
                 'id_guru' => $request->id_guru,
                 ]);
     
-            $kuis = Kuis::with('mapel')->where('id_guru', Auth::id())
+            $kuis = Kuis::with(['mapel','guru'])->where('id_guru', Auth::id())
                             ->orderBy('id_kuis')
                             ->get();
 
@@ -320,7 +322,7 @@ class KuisController extends Controller
             session()->start();
             //hapus data
             $hapus_kuis = kuis::where('id_kuis', $id_kuis)->delete();
-            $kuis = Kuis::with('mapel')->where('id_guru', Auth::id())
+            $kuis = Kuis::with(['mapel','guru'])->where('id_guru', Auth::id())
                             ->orderBy('id_kuis')
                             ->get();
 
@@ -350,7 +352,7 @@ class KuisController extends Controller
 
             return view('tambah-kuis',['kuis' => $kuis]);
         }elseif(auth()->user()->rolename === 'guru'){
-
+            
             session()->start();
             $kuis= Kuis::where('id_kuis', $id_kuis)->first();
 
@@ -396,13 +398,16 @@ class KuisController extends Controller
 
 
             //menampilkan data
-            $kuis = Kuis::orderBy('id_kuis', 'asc')->get();
+            $kuis = Kuis::with(['mapel','guru'])
+            ->orderBy('id_kuis', 'asc')
+            ->get();
             $mapel = Mapel::orderBy('id_mapel', 'asc')->get();
             $guru =  User::where('rolename', 'like', 'guru')->get();
             Session::forget('danger');
             session()->flash('success', 'Data kuis berhasil disimpan.');
             return view('kuis', ['kuis' => $kuis,'mapel' => $mapel, 'guru' => $guru,'hitung_kuis' => $hitung_kuis]);
         }elseif(auth()->user()->rolename === 'guru'){
+            $user = Auth::user();
 
             $hitung_kuis = Kuis::count();
             $data = [];
@@ -430,12 +435,14 @@ class KuisController extends Controller
 
 
             //menampilkan data
-            $kuis = Kuis::orderBy('id_kuis', 'asc')->get();
+            $kuis = Kuis::with(['mapel','guru'])->where('id_guru', Auth::id())
+                            ->orderBy('id_kuis')
+                            ->get();
             $mapel = Mapel::orderBy('id_mapel', 'asc')->get();
             $guru =  User::where('rolename', 'like', 'guru')->get();
             Session::forget('danger');
             session()->flash('success', 'Data kuis berhasil disimpan.');
-            return view('guru.kuis_guru', ['kuis' => $kuis,'mapel' => $mapel, 'guru' => $guru,'hitung_kuis' => $hitung_kuis]);
+            return view('guru.kuis_guru', ['kuis' => $kuis,'mapel' => $mapel, 'user' => $user, 'guru' => $guru,'hitung_kuis' => $hitung_kuis]);
 
 
         }elseif(auth()->user()->rolename === 'pengguna'){
@@ -562,7 +569,7 @@ class KuisController extends Controller
             }
             return view('kuis',['guru' => $guru,'mapel' => $mapel, 'kuis' => $kuis,'kuis2' => $kuis2,'hitung_kuis' => $hitung_kuis,'soal' => $soal,'get_kode' => $get_kode]);
         }elseif(auth()->user()->rolename === 'guru'){
-
+            $user = Auth::user();
             session()->start();
 
             $kuis2 = Kuis::where('id_kuis', $id_kuis)->first();
@@ -615,7 +622,7 @@ class KuisController extends Controller
                     ]);
                 }
             }
-            return view('guru.kuis_guru',['guru' => $guru,'mapel' => $mapel, 'kuis' => $kuis,'kuis2' => $kuis2,'hitung_kuis' => $hitung_kuis,'soal' => $soal,'get_kode' => $get_kode]);
+            return view('guru.kuis_guru',['guru' => $guru,'user' => $user,'mapel' => $mapel, 'kuis' => $kuis,'kuis2' => $kuis2,'hitung_kuis' => $hitung_kuis,'soal' => $soal,'get_kode' => $get_kode]);
 
         }elseif(auth()->user()->rolename === 'pengguna'){
             return redirect('/info');

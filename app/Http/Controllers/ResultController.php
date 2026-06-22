@@ -41,6 +41,8 @@ class ResultController extends Controller
         $total = count($jawabanUser);
         $nilai = ($total > 0) ? ($skor / $total) * 100 : 0;
         
+        $nilai_total = round($nilai);
+
         $cekJawaban = Jawaban::where('id_user', auth()->id())
             ->where('id_kuis', $request->id_kuis)
             ->exists();
@@ -51,10 +53,11 @@ class ResultController extends Controller
                 'id_user' => auth()->id(),
                 'id_kuis' => $request->id_kuis,
                 'id_mapel' => $request->id_mapel,
-                'skor' => $nilai,
+                'skor' => $nilai_total,
+                'timestamp' => $request->timestamp
             ]);
             
-            $nilai2 = $nilai;
+            $nilai2 = $nilai_total;
             session()->forget('quiz_end_'.$request->id_kuis);
             return view('pengguna.result',['nilai2' => $nilai2]);
         }

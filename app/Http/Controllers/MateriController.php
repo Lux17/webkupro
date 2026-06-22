@@ -75,7 +75,7 @@ class MateriController extends Controller
             session()->flash('success', 'Data materi berhasil ditemukan.');
             //cari data dari database
 
-            $materi = materi::Materi::with('mapel')->where('title', 'like', "%".$keyword."%")->get();
+            $materi = Materi::with('mapel')->where('title', 'like', "%".$keyword."%")->get();
 
             return view('materi', ['materi' => $materi,'hitung_materi' => $hitung_materi]);
         }elseif(auth()->user()->rolename === 'guru'){
@@ -170,7 +170,7 @@ class MateriController extends Controller
 
             $file->move(public_path('upload'), $fileName);
 
-            $filePath = 'upload/' . $fileName;
+            $filePath = '/upload/' . $fileName;
     
 
             
@@ -231,7 +231,7 @@ class MateriController extends Controller
 
             $file->move(public_path('upload'), $fileName);
 
-            $filePath = 'upload/' . $fileName;
+            $filePath = '/upload/' . $fileName;
     
 
             
@@ -339,7 +339,7 @@ class MateriController extends Controller
                     ->get();
             Session::forget('success');
             session()->flash('danger', 'Data materi berhasil dihapus.');
-            return view('materi', ['guru.materi_guru' => $materi,'hitung_materi' => $hitung_materi,'hapus_materi' => $hapus_materi]);
+            return view('guru.materi_guru', ['materi' => $materi,'hitung_materi' => $hitung_materi,'hapus_materi' => $hapus_materi]);
 
         }elseif(auth()->user()->rolename === 'pengguna'){
             return redirect('/info');
