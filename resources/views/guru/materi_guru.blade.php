@@ -94,7 +94,7 @@
                             <td><img src="{{ asset($g->img) }}" class="img-thumbnail" style="width:60px; height: 60px" /></td>
                             <td>{{ $g->title }}</td>
                             <td>{{ $g->tgl}}</td>
-                            <td>{{  $g->mapel->nama_mapel }}</td>
+                            <td>{{  $g->mapel->nama_mapel ?? '-' }}</td>
                             <td>
                               <a class="dropdown-item btn button-white" style="width: 5px;" href="{{ route('tampil-materi', $g->id_materi) }}" "><i class="fa-solid fa-eye" style="color: black;"></i></a>
                             </td>
