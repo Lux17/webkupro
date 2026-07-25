@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laporan Retest Penetration Test — MendungSTEM</title>
+<style>
+  :root {
+    --bg: #f1f5f9;
+    --card: #fff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --ok: #15803d;
+    --warn: #c2410c;
+    --crit: #b91c1c;
+    --info: #1d4ed8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    font-size: 15px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 24px rgba(15,23,42,.04);
+  }
+  .cover {
+    text-align: center;
+    background: linear-gradient(180deg, #ecfdf5, #fff);
+    padding: 40px 20px;
+  }
+  .badge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  h1 { margin: 12px 0 6px; font-size: 28px; }
+  h2 { margin: 0 0 14px; font-size: 20px; border-bottom: 2px solid #16a34a; padding-bottom: 6px; }
+  h3 { margin: 18px 0 8px; font-size: 16px; }
+  p, li { color: var(--text); }
+  .muted { color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 14px; }
+  th, td { border: 1px solid #cbd5e1; padding: 10px 12px; text-align: left; vertical-align: top; }
+  th { background: #0f172a; color: #fff; }
+  tr:nth-child(even) { background: #f8fafc; }
+  .status {
+    display: inline-block;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  .fixed { background: var(--ok); }
+  .residual { background: var(--warn); }
+  .open { background: var(--crit); }
+  .info { background: var(--info); }
+  .box {
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 10px 0;
+    border: 1px solid var(--border);
+    background: #f8fafc;
+  }
+  .box-ok { border-left: 4px solid #16a34a; background: #f0fdf4; }
+  .box-warn { border-left: 4px solid #ea580c; background: #fff7ed; }
+  .box-info { border-left: 4px solid #2563eb; background: #eff6ff; }
+  code {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 12.5px;
+    background: #e2e8f0;
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+  pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 12px 14px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-size: 12px;
+  }
+  .footer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 8px; }
+  @media print { body { background: #fff; } .card { box-shadow: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="card cover">
+    <div class="badge">RETEST REPORT — POST REMEDIATION</div>
+    <h1>Laporan Retest Penetration Test</h1>
+    <p><strong>MendungSTEM</strong></p>
+    <p class="muted">Verifikasi perbaikan kerentanan PT-05 s/d PT-13</p>
+    <p>Tanggal retest: <strong>24 Juli 2026</strong></p>
+    <p class="muted">Metode: Whitebox re-check + Blackbox HTTP probe + unit sanitizer</p>
+  </div>
+
+  <div class="card">
+    <h2>1. Ringkasan Eksekutif</h2>
+    <div class="box box-ok">
+      <strong>Hasil retest untuk scope perbaikan yang diminta: LOLOS (Fixed).</strong><br>
+      Semua temuan PT-05, PT-06, PT-07, PT-08, PT-09, PT-10, PT-11, PT-12, dan PT-13
+      terverifikasi sudah ditutup pada level kode dan/atau konfigurasi yang diuji.
+    </div>
+    <p>
+      Risiko residual masih ada di luar scope remedi sebelumnya (mis. file upload masih di
+      <code>public/upload</code>, route group middleware role belum terpusat, CSP longgar untuk script).
+      Secara keseluruhan postur keamanan <strong>membaik signifikan</strong> dibanding assessment awal.
+    </p>
+    <table>
+      <tr><th>Item</th><th>Nilai</th></tr>
+      <tr><td>Target</td><td><code>http://127.0.0.1:8000</code> (local)</td></tr>
+      <tr><td>Scope retest</td><td>PT-05 … PT-13 (daftar perbaikan sebelumnya)</td></tr>
+      <tr><td>Fixed</td><td>9 / 9</td></tr>
+      <tr><td>Open (scope ini)</td><td>0</td></tr>
+      <tr><td>Residual di luar scope</td><td>Beberapa (lihat §5)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>2. Matriks Retest</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Severity awal</th>
+          <th>Judul</th>
+          <th>Status retest</th>
+          <th>Bukti singkat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>PT-05</td>
+          <td>High</td>
+          <td>Stored XSS via <code>{!! !!}</code> episode</td>
+          <td><span class="status fixed">FIXED</span></td>
+          <td>HtmlSanitizer membersihkan script/on*/javascript:; unit test 0 fail</td>
+        </tr>
+        <tr>
+          <td>PT-06</td>
+          <td>High</td>
+          <td>APP_DEBUG &amp; stack exposure</td>
+          <td><span class="status fixed">FIXED</span></td>
+          <td><code>APP_DEBUG=false</code>; X-Powered-By tidak muncul di header response</td>
+        </tr>
+        <tr>
+          <td>PT-07</td>
+          <td>High</td>
+          <td>Mass assignment rolename</td>
+          <td><span class="status fixed">FIXED</span></td>
+          <td><code>rolename</code> tidak di $fillable; register force <code>pengguna</code></td>
+        </tr>
+        <tr>
+          <td>PT-08</td>
+          <td>High</td>
+          <td>Missing security headers</td>
+          <td><span class="status fixed">FIXED</span></td>
+          <td>CSP, XFO, nosniff, Referrer-Policy, Permissions-Policy aktif</td>
+        </tr>
+        <tr>
+          <td>PT-09</td>
+          <td>Medium</td>
+          <td>Session encrypt / Secure cookie</td>
+          <td><span class="status fixed">FIXED*</span></td>
+          <td><code>SESSION_ENCRYPT=true</code>; Secure auto di production (*lokal HTTP = false)</td>
+        </tr>
+        <tr>
+          <td>PT-10</td>
+          <td>Medium</td>
+          <td>Controller Download/Riwayat hilang</td>
+          <td><span class="status fixed">FIXED</span></td>
+          <td>Controller ada; unauth → 302 /login</td>
+        </tr>
+        <tr>
+          <td>PT-11</td>
+          <td>Medium</td>
+          <td>Validasi file lemah</td>
+          <td><span class="status fixed">FIXED</span></td>
+          <td>mimes whitelist + max 10240; no original filename; no 102400000</td>
+        </tr>
+        <tr>
+          <td>PT-12</td>
+          <td>Medium</td>
+          <td>Business logic kuis / skor</td>
+          <td><span class="status fixed">FIXED</span></td>
+          <td>Auth, class binding, mapel server-side, score by total soal resmi</td>
+        </tr>
+        <tr>
+          <td>PT-13</td>
+          <td>Medium</td>
+          <td>web.sql di root</td>
+          <td><span class="status fixed">FIXED</span></td>
+          <td>Root tidak ada; ada di storage private; .gitignore; URL /web.sql → 404</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>3. Detail Bukti Retest</h2>
+
+    <h3>3.1 Whitebox — PT-05 XSS</h3>
+    <ul>
+      <li><code>app/Support/HtmlSanitizer.php</code> aktif</li>
+      <li><code>EpisodeController</code> memanggil sanitizer saat simpan &amp; tampil (7 call sites)</li>
+      <li>View masih memakai <code>{!! $content !!}</code> tetapi input sudah dibersihkan (defense-in-depth + CSP)</li>
+    </ul>
+    <p><strong>Unit test payload:</strong></p>
+    <pre>&lt;script&gt;alert(1)&lt;/script&gt;          → dihapus (PASS)
+&lt;img onerror=alert(1)&gt;               → atribut on* dibuang (PASS)
+href="javascript:..."                → href dibuang (PASS)
+style url(javascript:...)            → style dibuang (PASS)
+onclick=...                          → dibuang (PASS)</pre>
+
+    <h3>3.2 Whitebox — PT-07 Mass assignment</h3>
+    <ul>
+      <li><code>User::$fillable</code> <strong>tidak</strong> memuat <code>rolename</code> (PASS)</li>
+      <li>Register: <code>$user->rolename = 'pengguna'</code> dipaksa server-side</li>
+      <li>Admin/Guru/Pengguna controller set role literal, bukan <code>$request->rolename</code></li>
+    </ul>
+
+    <h3>3.3 Whitebox — PT-11 Upload</h3>
+    <ul>
+      <li>Tidak ada <code>max:102400000</code> di controller</li>
+      <li>Tidak ada <code>getClientOriginalName()</code> di controller upload</li>
+      <li>Whitelist: <code>mimes:jpg,jpeg,png,...,zip</code> + <code>max:10240</code></li>
+      <li><code>public/upload/.htaccess</code> memblokir eksekusi PHP</li>
+    </ul>
+
+    <h3>3.4 Whitebox — PT-12 Kuis</h3>
+    <ul>
+      <li><code>ResultController</code> / <code>KuisController@hasil</code> / <code>QuizController</code>: auth, role siswa, binding kelas, mapel server-side</li>
+      <li>Skor dihitung dari total soal DB, bukan jumlah jawaban client</li>
+      <li>Attempt existing tidak di-overwrite</li>
+    </ul>
+
+    <h3>3.5 Blackbox — Header &amp; exposure</h3>
+    <pre>GET /login
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; ...
+  (X-Powered-By: tidak ada)
+
+GET /.env            → 404
+GET /web.sql         → 404
+GET /dashboard       → 302 (redirect)
+GET /admin           → 302 (redirect)
+GET /unduh/1         → 302 → /login
+GET /riwayat/...     → 302 → /login
+POST /result         → 419 (CSRF)
+POST /users/simpan   → 419 (CSRF)</pre>
+
+    <h3>3.6 Konfigurasi session / debug</h3>
+    <table>
+      <tr><th>Setting</th><th>Nilai terukur</th><th>Hasil</th></tr>
+      <tr><td>APP_DEBUG</td><td>false</td><td><span class="status fixed">OK</span></td></tr>
+      <tr><td>SESSION_ENCRYPT</td><td>true</td><td><span class="status fixed">OK</span></td></tr>
+      <tr><td>SESSION_SECURE_COOKIE</td><td>false (local HTTP)</td><td><span class="status info">EXPECTED DEV</span></td></tr>
+      <tr><td>secure default production</td><td>true jika APP_ENV=production</td><td><span class="status fixed">OK</span></td></tr>
+      <tr><td>laravel_session flags</td><td>HttpOnly; SameSite=Lax</td><td><span class="status fixed">OK</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>4. Perbandingan Sebelum vs Sesudah</h2>
+    <table>
+      <thead>
+        <tr><th>Aspek</th><th>Assessment awal</th><th>Retest</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>XSS episode</td><td>Raw HTML tanpa sanitasi</td><td>Sanitized + CSP</td>
+        </tr>
+        <tr>
+          <td>Privilege via register</td><td>rolename client-controlled</td><td>Forced pengguna + not fillable</td>
+        </tr>
+        <tr>
+          <td>Security headers</td><td>Hampir tidak ada</td><td>Lengkap (CSP/XFO/nosniff/...)</td>
+        </tr>
+        <tr>
+          <td>Upload validation</td><td>max ~100GB, original name</td><td>10MB + mimes + random name</td>
+        </tr>
+        <tr>
+          <td>Quiz scoring</td><td>Client-influenced total</td><td>Server total soal + class bind</td>
+        </tr>
+        <tr>
+          <td>Missing controllers</td><td>Route putus / 500 risk</td><td>Implemented + auth gate</td>
+        </tr>
+        <tr>
+          <td>web.sql</td><td>Root project</td><td>Private storage + gitignore</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>5. Residual Risk (di luar scope PT-05…13, masih relevan)</h2>
+    <div class="box box-warn">
+      Temuan berikut <strong>bukan regresi</strong> dari remedi PT-05…13, tetapi masih layak ditindaklanjuti:
+    </div>
+    <table>
+      <thead>
+        <tr><th>Residual</th><th>Severity</th><th>Catatan</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Upload masih di <code>public/upload</code> (langsung web-accessible)</td>
+          <td>Medium–High</td>
+          <td>Validasi sudah ketat + .htaccess; idealnya pindah ke storage private</td>
+        </tr>
+        <tr>
+          <td>Route group middleware role belum terpusat</td>
+          <td>High (arsitektur)</td>
+          <td>Masih banyak if-else manual di controller (PT-03 lama)</td>
+        </tr>
+        <tr>
+          <td>CSP mengizinkan <code>'unsafe-inline'</code> / <code>'unsafe-eval'</code> pada script</td>
+          <td>Low–Medium</td>
+          <td>Diperlukan Livewire/legacy assets; bisa dikeraskan bertahap</td>
+        </tr>
+        <tr>
+          <td>Sanitizer masih mengizinkan iframe https generik</td>
+          <td>Low</td>
+          <td>CSP <code>frame-src</code> membatasi ke YouTube/Vimeo di browser modern</td>
+        </tr>
+        <tr>
+          <td>IDOR horizontal guru (list data global)</td>
+          <td>Medium</td>
+          <td>PT-04 lama; ownership filter belum penuh</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>6. Kesimpulan Retest</h2>
+    <div class="box box-ok">
+      <strong>Verdict scope PT-05 s/d PT-13: PASS / FIXED</strong><br>
+      Perbaikan yang diimplementasikan terverifikasi efektif pada whitebox dan blackbox lokal.
+    </div>
+    <p><strong>Rekomendasi lanjutan (opsional):</strong></p>
+    <ol>
+      <li>Terapkan middleware <code>auth + role</code> terpusat pada semua route sensitif (sisa PT-03).</li>
+      <li>Pindahkan unggahan ke disk non-public + signed download (sisa PT-01).</li>
+      <li>Filter ownership data guru (sisa PT-04).</li>
+      <li>Production: HTTPS + <code>SESSION_SECURE_COOKIE=true</code> + <code>APP_ENV=production</code>.</li>
+      <li>Retest autentikasi multi-role (admin/guru/siswa) end-to-end sebelum go-live.</li>
+    </ol>
+    <div class="footer">
+      Dokumen retest MendungSTEM — 24 Juli 2026.<br>
+      Tidak menyertakan exploit operasional atau credential. Distribusi terbatas untuk pemilik sistem.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
